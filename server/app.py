@@ -45,8 +45,6 @@ class MovieByID(Resource):
 
             body['users'] = [user.to_dict(only=('id', 'username')) for user in movie.users]
 
-            # body['users_cart'] = [user_cart.to_dict(only=('id', 'username')) for user_cart in movie_cart.users_cart]
-
             return make_response(body, 200)
         else:
             body = {"error": f"Movie {id} not found."}
