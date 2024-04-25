@@ -16,11 +16,14 @@ function Movie({ movie }) {
           <img
             src={movie.image}
             alt={movie.name}
-            className="rounded-xl w-52 h-52"
+            className="rounded-xl w-52 h-62"
           />
         </figure>
         <div className="card-body items-center text-center">
-          <h2 className="card-title">{movie.name}</h2>
+          <h2 className="card-title text-4xl text-slate-700">{movie.name}</h2>
+          <h3 className="card-price text-3xl text-black mb-3">
+            ${movie.price}
+          </h3>
           <Zoom delay={100}>
             <div className="card-actions">
               <button

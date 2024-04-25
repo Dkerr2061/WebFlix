@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MovieList from "./components/MovieList";
 import ErrorPage from "./pages/ErrorPage";
 import AddMovie from "./pages/AddMovie";
+import MovieDetail from "./pages/MovieDetail";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/add_movie",
         element: <AddMovie />,
+      },
+      {
+        path: "/movies/:id",
+        element: <MovieDetail />,
       },
     ],
   },

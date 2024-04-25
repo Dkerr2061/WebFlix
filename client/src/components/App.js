@@ -35,10 +35,38 @@ function App() {
     });
   }
 
+  function updateMovie(id, updatedMovie) {
+    fetch(`/movies/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedMovie),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((updatedMovieData) => {
+          setMovies((movies) =>
+            movies.map((movie) => {
+              if (movie.id === updatedMovieData.id) {
+                return updatedMovieData;
+              } else {
+                return movie;
+              }
+            })
+          );
+        });
+      } else if (res.status === 400) {
+        res.json().then((errorData) => {
+          alert(`Error ${errorData.error}`);
+        });
+      }
+    });
+  }
+
   return (
     <div>
       <NavBar />
-      <Outlet context={{ movies: movies, addMovie }} />
+      <Outlet context={{ movies: movies, addMovie, updateMovie }} />
     </div>
   );
 }
