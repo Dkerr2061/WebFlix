@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { Zoom } from "react-awesome-reveal";
 
-function Movie({ movie }) {
+function Movie({ movie, deleteMovie }) {
   const { id } = movie;
   const navigate = useNavigate();
 
   function navigateToMovieDetails() {
     navigate(`/movies/${id}`);
+  }
+
+  function handleDelete() {
+    deleteMovie(movie.id);
   }
 
   return (
@@ -32,7 +36,10 @@ function Movie({ movie }) {
               >
                 Movie Details
               </button>
-              <button className="btn btn-primary hover:animate-pulse">
+              <button
+                className="btn btn-primary hover:animate-pulse"
+                onClick={handleDelete}
+              >
                 Delete Movie
               </button>
             </div>

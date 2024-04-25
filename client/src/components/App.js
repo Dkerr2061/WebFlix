@@ -63,10 +63,30 @@ function App() {
     });
   }
 
+  function deleteMovie(id) {
+    fetch(`/movies/${id}`, {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        setMovies((movies) =>
+          movies.filter((movie) => {
+            return movie.id !== id;
+          })
+        );
+      } else if (res.status === 400) {
+        res.json().then((errorData) => {
+          alert(`Error ${errorData.error}`);
+        });
+      }
+    });
+  }
+
   return (
     <div>
       <NavBar />
-      <Outlet context={{ movies: movies, addMovie, updateMovie }} />
+      <Outlet
+        context={{ movies: movies, addMovie, updateMovie, deleteMovie }}
+      />
     </div>
   );
 }
