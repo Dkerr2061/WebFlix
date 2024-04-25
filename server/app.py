@@ -141,7 +141,70 @@ api.add_resource(UserByID, '/users/<int:id>')
 
 # =================================================================================
 
+class AllReviews(Resource):
 
+    def get(self):
+        reviews = Review.query.all()
+        body = [review.to_dict(only=('id', 'rating', 'text', 'movie_id', 'user_id')) for review in reviews]
+        return make_response(body, 200)
+    
+    def post(self):
+        try:
+            new_review = Review(rating=request.json.get('rating'), text=request.json.get('text'), movie_id=request.json.get('movie_id'), user_id=request.json.get('user_id'))
+            db.session.add(new_review)
+            db.session.commit()
+            body = new_review.to_dict(only=('id', 'rating', 'text', 'movie_id', 'user_id'))
+            return make_response(body, 201)
+        except:
+            body = {"error": "Review could not be created."}
+            return make_response(body, 400)
+
+api.add_resource(AllReviews, '/reviews')
+
+class ReviewByID(Resource):
+
+    def get(self, id):
+        pass
+        review = db.session.get(Review, id)
+        if review:
+            try:
+                body = review.to_dict(only=('id', 'rating', 'text', 'movie_id', 'user_id'))
+                return make_response(body, 200)
+            except:
+                body = {"error": "Could not fetch review at this moment."}
+                return make_response(body, 400)
+        else:
+            body = {"error": f"Review {id} could not be found."}
+            return make_response(body, 404)
+        
+    def patch(self, id):
+        review = db.session.get(Review, id)
+        if review:
+            try:
+                for attr in request.json:
+                    setattr(review, attr, request.json[attr])
+                db.session.commit()
+                body = review.to_dict(only=('id', 'rating', 'text', 'movie_id', 'user_id'))
+                return make_response(body, 200)
+            except:
+                body = {"error": "Review could not be updated."}
+                return make_response(body, 400)
+        else:
+            body = {"error": f"Review {id} not found."}
+            return make_response(body, 404)
+        
+    def delete(self, id):
+        review = db.session.get(Review, id)
+        if review:
+            db.session.delete(review)
+            db.session.commit()
+            body = {}
+            return make_response(body, 204)
+        else:
+            body = {"error": f"Review {id} not found."}
+            return make_response(body, 404)
+
+api.add_resource(ReviewByID, '/reviews/<int:id>')
 
 
 
