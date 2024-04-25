@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MovieList from "./components/MovieList";
 import ErrorPage from "./pages/ErrorPage";
+import AddMovie from "./pages/AddMovie";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <MovieList />,
+      },
+      {
+        path: "/add_movie",
+        element: <AddMovie />,
       },
     ],
   },
