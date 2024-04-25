@@ -208,7 +208,7 @@ class AllCartItems(Resource):
 
     def get(self):
         cart_items = CartItem.query.all()
-        body = [cart_item.to_dict(only=('id', 'movie_id', 'user_id')) for cart_item in cart_items]
+        body = [cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews')) for cart_item in cart_items]
         return make_response(body, 200)
     
     def post(self):
@@ -230,7 +230,7 @@ class CartItemsByID(Resource):
         cart_item = db.session.get(CartItem, id)
         if cart_item:
             try:
-                body = cart_item.to_dict(only=('id', 'movie_id', 'user_id'))
+                body = cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews'))
                 return make_response(body, 200)
             except:
                 body = {"error": "Could not process request."}
