@@ -18,7 +18,7 @@ class Movie(db.Model, SerializerMixin):
   price = db.Column(db.Integer, nullable=False)
 
   reviews = db.relationship('Review', back_populates='movie', cascade='all')
-  cart_items = db.relationship('CartItem', back_populates='user_cart', cascade='all')
+  cart_items = db.relationship('CartItem', back_populates='movie_cart', cascade='all')
 
   users = association_proxy('reviews', 'user', creator = lambda u: User(user=u))
   users_cart = association_proxy('cart_items', 'user_cart', creator = lambda uc: User(user_cart=uc))
