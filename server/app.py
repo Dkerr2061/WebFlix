@@ -143,7 +143,7 @@ class AllReviews(Resource):
 
     def get(self):
         reviews = Review.query.all()
-        body = [review.to_dict(only=('id', 'rating', 'text', 'movie_id', 'user_id')) for review in reviews]
+        body = [review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items')) for review in reviews]
         return make_response(body, 200)
     
     def post(self):
@@ -166,7 +166,7 @@ class ReviewByID(Resource):
         review = db.session.get(Review, id)
         if review:
             try:
-                body = review.to_dict(only=('id', 'rating', 'text', 'movie_id', 'user_id'))
+                body = review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items'))
                 return make_response(body, 200)
             except:
                 body = {"error": "Could not fetch review at this moment."}

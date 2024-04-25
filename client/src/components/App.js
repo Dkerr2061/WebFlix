@@ -4,9 +4,10 @@ import NavBar from "./NavBar";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const navigate = useNavigate();
 
-  // Movie data and functions:
+  // Movie data and functions start here:
 
   useEffect(() => {
     fetch("/movies")
@@ -81,11 +82,27 @@ function App() {
     });
   }
 
+  // Movie functions and data end here
+
+  // Review functions and data start here:
+
+  useEffect(() => {
+    fetch("/reviews")
+      .then((res) => res.json())
+      .then((reviewData) => setReviews(reviewData));
+  }, []);
+
   return (
     <div>
       <NavBar />
       <Outlet
-        context={{ movies: movies, addMovie, updateMovie, deleteMovie }}
+        context={{
+          movies: movies,
+          addMovie,
+          updateMovie,
+          deleteMovie,
+          reviews: reviews,
+        }}
       />
     </div>
   );

@@ -21,7 +21,7 @@ class Movie(db.Model, SerializerMixin):
   cart_items = db.relationship('CartItem', back_populates='movie_cart', cascade='all')
 
   users = association_proxy('reviews', 'user', creator = lambda u: Review(user=u))
-  user_item = association_proxy('cart_items', 'user_cart', creator = lambda ui: CartItem(user_cart = ui))
+  # user_item = association_proxy('cart_items', 'user_cart', creator = lambda ui: CartItem(user_cart = ui))
   
 
   @validates('name', 'image', 'director', 'description')
@@ -52,7 +52,7 @@ class User(db.Model, SerializerMixin):
   cart_items = db.relationship('CartItem', back_populates='user_cart', cascade='all')
 
   movies = association_proxy('reviews', 'movie', creator = lambda m: Review(movie=m))
-  movie_item = association_proxy('cart_items', 'movie_cart', creator = lambda mi: CartItem(movie_cart=mi))
+  # movie_item = association_proxy('cart_items', 'movie_cart', creator = lambda mi: CartItem(movie_cart=mi))
 
   @validates('username', 'password_hash')
   def validate_username_and_password(self, key, value):

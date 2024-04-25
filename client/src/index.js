@@ -7,6 +7,9 @@ import MovieList from "./components/MovieList";
 import ErrorPage from "./pages/ErrorPage";
 import AddMovie from "./pages/AddMovie";
 import MovieDetail from "./pages/MovieDetail";
+import ReviewList from "./components/ReviewList";
+import AddReview from "./pages/AddReview";
+import UpdateReview from "./pages/UpdateReview";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,18 @@ const router = createBrowserRouter([
       {
         path: "/movies/:id",
         element: <MovieDetail />,
+      },
+      {
+        path: "/reviews",
+        element: <ReviewList />,
+      },
+      {
+        path: "/add_review",
+        element: <AddReview />,
+      },
+      {
+        path: "/reviews/:id",
+        element: <UpdateReview />,
       },
     ],
   },
