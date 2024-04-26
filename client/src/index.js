@@ -10,6 +10,8 @@ import MovieDetail from "./pages/MovieDetail";
 import ReviewList from "./components/ReviewList";
 import AddReview from "./pages/AddReview";
 import UpdateReview from "./pages/UpdateReview";
+import StoreList from "./components/StoreList";
+import CartList from "./components/CartList";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: "/reviews/:id",
         element: <UpdateReview />,
+      },
+      {
+        path: "/store",
+        element: <StoreList />,
+      },
+      {
+        path: "/cart_items",
+        element: <CartList />,
       },
     ],
   },

@@ -5,6 +5,8 @@ import NavBar from "./NavBar";
 function App() {
   const [movies, setMovies] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   // Movie data and functions start here:
@@ -152,6 +154,34 @@ function App() {
     });
   }
 
+  //  Review Functions and data end here
+
+  // CartItems and Store Functions start here:
+
+  useEffect(() => {
+    fetch("/cart_items").then((res) => {
+      if (res.ok) {
+        res.json().then((cartItemData) => setCartItems(cartItemData));
+      } else if (res.status === 400) {
+        res.json().then((errorData) => console.log(errorData.error));
+      }
+    });
+  }, []);
+
+  // CartItems and Store Functions end here
+
+  // User Functions and data start here:
+
+  useEffect(() => {
+    fetch("/users").then((res) => {
+      if (res.ok) {
+        res.json().then((userData) => setUsers(userData));
+      } else if (res.status === 400) {
+        res.json().then((errorData) => console.log(errorData));
+      }
+    });
+  }, []);
+
   return (
     <div>
       <NavBar />
@@ -165,6 +195,8 @@ function App() {
           addReview,
           updateReview,
           deleteReview,
+          cartItems: cartItems,
+          users: users,
         }}
       />
     </div>

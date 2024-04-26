@@ -1,18 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Zoom } from "react-awesome-reveal";
 
-function Movie({ movie, deleteMovie }) {
-  const { id } = movie;
-  const navigate = useNavigate();
-
-  function navigateToMovieDetails() {
-    navigate(`/movies/${id}`);
-  }
-
-  function handleDelete() {
-    deleteMovie(movie.id);
-  }
-
+function Store({ movie }) {
   return (
     <div className="card w-1/3 glass shadow-xl rounded-lg m-4">
       <Zoom>
@@ -25,19 +14,16 @@ function Movie({ movie, deleteMovie }) {
         </figure>
         <div className="card-body items-center text-center">
           <h2 className="card-title text-4xl text-slate-700">{movie.name}</h2>
+          <h3 className="card-price text-3xl text-black mb-3">
+            ${movie.price}
+          </h3>
           <Zoom delay={100}>
             <div className="card-actions">
               <button
                 className="btn btn-primary hover:animate-pulse"
-                onClick={navigateToMovieDetails}
+                onClick={(e) => console.log(e)}
               >
-                Movie Details
-              </button>
-              <button
-                className="btn btn-primary hover:animate-pulse"
-                onClick={handleDelete}
-              >
-                Delete Movie
+                Add To Cart
               </button>
             </div>
           </Zoom>
@@ -47,4 +33,4 @@ function Movie({ movie, deleteMovie }) {
   );
 }
 
-export default Movie;
+export default Store;

@@ -1,8 +1,13 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 
 function NavBar() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  function navigateToCart() {
+    navigate("/cart_items");
+  }
 
   return (
     <div className="navbar bg-gradient-to-r from-sky-500 to-indigo-500">
@@ -37,6 +42,9 @@ function NavBar() {
             </li>
             <li>
               <NavLink to="/reviews">View Reviews</NavLink>
+            </li>
+            <li>
+              <NavLink to="/store">Go to Store</NavLink>
             </li>
             <li>
               <NavLink to="/login">Login</NavLink>
@@ -97,7 +105,10 @@ function NavBar() {
                 <span className="font-bold text-lg">8 Items</span>
                 <span className="text-info">Subtotal: $999</span>
                 <div className="card-actions">
-                  <button className="btn btn-primary btn-block">
+                  <button
+                    className="btn btn-primary btn-block"
+                    onClick={navigateToCart}
+                  >
                     View cart
                   </button>
                 </div>
