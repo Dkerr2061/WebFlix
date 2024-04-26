@@ -19,7 +19,7 @@ class AllMovies(Resource):
 
     def get(self):
         movies = Movie.query.all()
-        body = [movie.to_dict(only=('id', 'name', 'image', 'year', 'director', 'description', 'price')) for movie in movies]
+        body = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart')) for movie in movies]
         return make_response(body, 200)
     
     def post(self):
@@ -27,7 +27,7 @@ class AllMovies(Resource):
             new_movie = Movie(name=request.json.get('name'), image=request.json.get('image'), year=request.json.get('year'), director=request.json.get('director'), description=request.json.get('description'), price=request.json.get('price'))
             db.session.add(new_movie)
             db.session.commit()
-            body = new_movie.to_dict(only=('id', 'name', 'image', 'year', 'director', 'description', 'price'))
+            body = new_movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
             return make_response(body, 201)
         except:
             body = {"error": "New movie could not be created."}
@@ -57,7 +57,7 @@ class MovieByID(Resource):
                 for attr in request.json:
                     setattr(movie, attr, request.json[attr])
                 db.session.commit()
-                body = movie.to_dict(only=('id', 'name', 'image', 'year', 'director', 'description', 'price'))
+                body = movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
                 return make_response(body, 200)
             except:
                 body = {"error": "Movie could not be updated."}
@@ -85,7 +85,7 @@ class AllUsers(Resource):
 
     def get(self):
         users = User.query.all()
-        body = [user.to_dict(only=('id', 'username', 'password_hash', 'type')) for user in users]
+        body = [user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart')) for user in users]
         return make_response(body, 200)
     
     def post(self):
@@ -93,7 +93,7 @@ class AllUsers(Resource):
             new_user = User(username=request.json.get('username'), password_hash=request.json.get('password_hash'), type=request.json.get('type'))
             db.session.add(new_user)
             db.session.commit()
-            body = new_user.to_dict(only=('id', 'username', 'password_hash', 'type'))
+            body = new_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
             return make_response(body, 201)
         except:
             body = {"error": "Could not create new user."}
@@ -109,7 +109,7 @@ class UserByID(Resource):
             try:
                 body = user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
 
-                body['movies'] = [movie.to_dict(only=('id', 'name', 'image', 'year', 'director', 'description', 'price')) for movie in user.movies]
+                body['movies'] = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart')) for movie in user.movies]
 
                 return make_response(body, 200)
             except:
@@ -216,7 +216,7 @@ class AllCartItems(Resource):
             new_cart_item = CartItem(movie_id=request.json.get('movie_id'), user_id=request.json.get('user_id'))
             db.session.add(new_cart_item)
             db.session.commit()
-            body = new_cart_item.to_dict(only=('id', 'movie_id', 'user_id'))
+            body = new_cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews'))
             return make_response(body, 201)
         except:
             body = {"error": "Could not add item to cart."}
