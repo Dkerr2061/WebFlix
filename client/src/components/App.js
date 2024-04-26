@@ -92,6 +92,22 @@ function App() {
       .then((reviewData) => setReviews(reviewData));
   }, []);
 
+  function deleteReview(id) {
+    fetch(`/reviews/${id}`, {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        setReviews((reviews) =>
+          reviews.filter((review) => {
+            return review.id !== id;
+          })
+        );
+      } else if (res.status === 400) {
+        res.json().then((errorData) => alert(`Error: ${errorData.error}`));
+      }
+    });
+  }
+
   return (
     <div>
       <NavBar />
@@ -102,6 +118,7 @@ function App() {
           updateMovie,
           deleteMovie,
           reviews: reviews,
+          deleteReview,
         }}
       />
     </div>
