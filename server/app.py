@@ -183,7 +183,7 @@ class ReviewByID(Resource):
                     setattr(review, attr, request.json[attr])
                 db.session.commit()
                 body = review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items'))
-                return make_response(body, 200)
+                return make_response(body, 201)
             except:
                 body = {"error": "Review could not be updated."}
                 return make_response(body, 400)

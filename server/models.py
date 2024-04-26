@@ -91,13 +91,13 @@ class Review(db.Model, SerializerMixin):
 
   @validates('rating')
   def validate_rating(self, key, value):
-    if not (isinstance(value, int)) and (0 <= value <= 10):
+    if not (isinstance(value, int)):
       raise ValueError('Rating must be an integer between 0 to 10.')
     else:
       return value
     
-  @validates('artist_id', 'album_id')
-  def validate_artist_and_album_id(self, key, value):
+  @validates('movie_id', 'user_id')
+  def validate_movie_and_user_id(self, key, value):
     if not (isinstance(value, int)):
       raise ValueError(f"{key} must be an Integer.")
     else:
