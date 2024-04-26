@@ -61,6 +61,7 @@ function UpdateReview() {
       </Zoom>
       <Slide cascade delay={500}>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
+          <h2>Rating:</h2>
           <input
             className="input input-bordered input-info w-full max-w-xs mb-4"
             type="text"
@@ -70,6 +71,7 @@ function UpdateReview() {
             value={updatedReviewData.rating}
             required
           />
+          <h2>Review Text:</h2>
           <input
             className="input input-bordered input-info w-full max-w-xs mb-4"
             type="text"
@@ -79,6 +81,7 @@ function UpdateReview() {
             value={updatedReviewData.text}
             required
           />
+          <h2>Movie Id:</h2>
           <input
             className="input input-bordered input-info w-full max-w-xs mb-4"
             type="text"
@@ -88,6 +91,7 @@ function UpdateReview() {
             value={updatedReviewData.movie_id}
             required
           />
+          <h2>User Id:</h2>
           <input
             className="input input-bordered input-info w-full max-w-xs mb-4"
             type="text"
