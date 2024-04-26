@@ -97,6 +97,7 @@ function MovieDetail() {
       <div className="text-center">
         <h2 className="text-teal-300 text-5xl mb-4">Update Movie</h2>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
+          <h2>Movie Name:</h2>
           <input
             className="input input-bordered input-info w-full max-w-xs mb-4"
             type="text"
@@ -106,6 +107,7 @@ function MovieDetail() {
             value={updatedMovieData.name}
             required
           />
+          <h2>Movie Image:</h2>
           <input
             className="input input-bordered input-info w-full max-w-xs mb-4"
             type="text"
@@ -115,6 +117,7 @@ function MovieDetail() {
             value={updatedMovieData.image}
             required
           />
+          <h2>Release Year:</h2>
           <input
             className="input input-bordered input-info w-full max-w-xs mb-4"
             type="text"
@@ -124,6 +127,7 @@ function MovieDetail() {
             value={updatedMovieData.year}
             required
           />
+          <h2>Director:</h2>
           <input
             className="input input-bordered input-info w-full max-w-xs mb-4"
             type="text"
@@ -133,6 +137,7 @@ function MovieDetail() {
             value={updatedMovieData.director}
             required
           />
+          <h2>Description:</h2>
           <input
             className="input input-bordered input-info w-full max-w-xs mb-4"
             type="text"
@@ -142,6 +147,7 @@ function MovieDetail() {
             value={updatedMovieData.description}
             required
           />
+          <h2>Price:</h2>
           <input
             className="input input-bordered input-info w-full max-w-xs mb-4"
             type="text"
