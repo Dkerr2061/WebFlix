@@ -17,7 +17,7 @@ function AddMovie() {
   function handleSubmit(event) {
     event.preventDefault();
     const releaseYear = parseInt(movieFormData.year);
-    const moviePrice = parseInt(movieFormData.price);
+    const moviePrice = parseFloat(movieFormData.price);
 
     addMovie({ ...movieFormData, year: releaseYear, price: moviePrice });
     setMovieFormData({

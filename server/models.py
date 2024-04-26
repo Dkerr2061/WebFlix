@@ -15,7 +15,7 @@ class Movie(db.Model, SerializerMixin):
   year = db.Column(db.Integer, nullable=False)
   director = db.Column(db.String, nullable=False)
   description = db.Column(db.String, nullable=False)
-  price = db.Column(db.Integer, nullable=False)
+  price = db.Column(db.Float, nullable=False)
 
   reviews = db.relationship('Review', back_populates='movie', cascade='all')
   cart_items = db.relationship('CartItem', back_populates='movie_cart', cascade='all')

@@ -35,7 +35,7 @@ function MovieDetail() {
   function handleSubmit(event) {
     event.preventDefault();
     const releaseYear = parseInt(updatedMovieData.year);
-    const moviePrice = parseInt(updatedMovieData.price);
+    const moviePrice = parseFloat(updatedMovieData.price);
 
     updateMovie(movie.id, {
       ...updatedMovieData,
