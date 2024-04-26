@@ -96,10 +96,10 @@ class Review(db.Model, SerializerMixin):
     else:
       return value
     
-  @validates('text')
-  def validate_text(self, key, value):
-    if not (0 <= len(value) <= 250):
-      raise ValueError('Review text must be between 1 to 250 characters long.')
+  @validates('artist_id', 'album_id')
+  def validate_artist_and_album_id(self, key, value):
+    if not (isinstance(value, int)):
+      raise ValueError(f"{key} must be an Integer.")
     else:
       return value
 

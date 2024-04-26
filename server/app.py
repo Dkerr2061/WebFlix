@@ -151,7 +151,7 @@ class AllReviews(Resource):
             new_review = Review(rating=request.json.get('rating'), text=request.json.get('text'), movie_id=request.json.get('movie_id'), user_id=request.json.get('user_id'))
             db.session.add(new_review)
             db.session.commit()
-            body = new_review.to_dict(only=('id', 'rating', 'text', 'movie_id', 'user_id'))
+            body = new_review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items'))
             return make_response(body, 201)
         except:
             body = {"error": "Review could not be created."}
@@ -182,7 +182,7 @@ class ReviewByID(Resource):
                 for attr in request.json:
                     setattr(review, attr, request.json[attr])
                 db.session.commit()
-                body = review.to_dict(only=('id', 'rating', 'text', 'movie_id', 'user_id'))
+                body = review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items'))
                 return make_response(body, 200)
             except:
                 body = {"error": "Review could not be updated."}

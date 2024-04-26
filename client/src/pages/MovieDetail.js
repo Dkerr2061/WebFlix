@@ -53,7 +53,7 @@ function MovieDetail() {
   }
 
   function navigateToWriteReviews() {
-    navigate(`/reviews/${id}`);
+    navigate("/add_review");
   }
 
   return (

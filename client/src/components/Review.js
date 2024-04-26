@@ -12,6 +12,7 @@ function Review({ review, deleteReview }) {
   function handleDelete(id) {
     deleteReview(review.id);
   }
+  console.log(review);
 
   return (
     <div className="card lg:card-side bg-base-100 shadow-xl m-4">

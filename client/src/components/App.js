@@ -92,6 +92,24 @@ function App() {
       .then((reviewData) => setReviews(reviewData));
   }, []);
 
+  function addReview(newReview) {
+    fetch("/reviews", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newReview),
+    }).then((res) => {
+      if (res.ok) {
+        res
+          .json()
+          .then((newReviewData) => setReviews([...reviews, newReviewData]));
+      } else if (res.status === 400) {
+        res.json().then((errorData) => alert(`Error: ${errorData.error}`));
+      }
+    });
+  }
+
   function deleteReview(id) {
     fetch(`/reviews/${id}`, {
       method: "DELETE",
@@ -118,6 +136,7 @@ function App() {
           updateMovie,
           deleteMovie,
           reviews: reviews,
+          addReview,
           deleteReview,
         }}
       />
