@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, make_response
+from flask import request, make_response, session
 from flask_restful import Resource
 
 # Local imports
@@ -250,6 +250,53 @@ class CartItemsByID(Resource):
             body = {"error": f"Cart item {id} not found."}
 
 api.add_resource(CartItemsByID, '/cart_items/<int:id>')
+
+class Login(Resource):
+
+    def post(self):
+        username = request.json.get('username')
+        password = request.json.get('password_hash')
+        current_user = User.query.filter(User.username == username).first()
+
+        if(current_user and current_user.password_hash == password):  
+            session['user_id'] = current_user.id          
+            body = current_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
+
+            body['movies'] = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart')) for movie in list(set(current_user.movies))]
+
+            return make_response(body, 200)
+        else:
+            body = {"error": "Invalid Username or Password."}
+            return make_response(body, 401)
+
+api.add_resource(Login, '/login')
+
+class CheckSession(Resource):
+
+    def get(self):
+        current_user = db.session.get(User, session.get('user_id'))
+        if current_user:         
+            body = current_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
+
+            body['movies'] = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart')) for movie in list(set(current_user.movies))]
+
+            return make_response(body, 200)
+        else:
+            body = {"error": "Please LogIn!"}
+            return make_response(body, 401)
+
+api.add_resource(CheckSession, '/check_session')
+
+class Logout(Resource):
+
+    def delete(self):
+        if(session.get('user_id')):
+            del(session['user_id'])
+
+        body = {}
+        return make_response(body, 204)
+
+api.add_resource(Logout, '/logout')
 
 
 if __name__ == '__main__':

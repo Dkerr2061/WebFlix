@@ -12,6 +12,7 @@ from sqlalchemy import MetaData
 
 # Instantiate app, set attributes
 app = Flask(__name__)
+app.secret_key = b'=1\xad\xbe{\xc1\xfb\x14\x07\xef\x936/\xf7\x05]'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///movie.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False

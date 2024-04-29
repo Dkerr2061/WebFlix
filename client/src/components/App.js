@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, Navigate } from "react-router-dom";
 import NavBar from "./NavBar";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [cartItems, setCartItems] = useState([]);
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   // Movie data and functions start here:
@@ -173,18 +174,53 @@ function App() {
   // User Functions and data start here:
 
   useEffect(() => {
-    fetch("/users").then((res) => {
+    fetch("/check_session").then((res) => {
       if (res.ok) {
-        res.json().then((userData) => setUsers(userData));
+        res.json().then((userData) => {
+          setUser(userData);
+          navigate("/");
+        });
       } else if (res.status === 400) {
         res.json().then((errorData) => console.log(errorData));
       }
     });
   }, []);
 
+  function logInUser(loginData) {
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((loginUserData) => {
+          setUser(loginUserData);
+          navigate("/");
+        });
+      } else {
+        res.json().then((errorData) => alert(`Error: ${errorData.error}`));
+      }
+    });
+  }
+
+  function logOutUser() {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        setUser(null);
+      } else {
+        alert("Unable to log out.");
+      }
+    });
+  }
+
   return (
     <div>
-      <NavBar />
+      {!user ? <Navigate to="/login" /> : null}
+      <NavBar user={user} logOutUser={logOutUser} />
       <Outlet
         context={{
           movies: movies,
@@ -196,7 +232,8 @@ function App() {
           updateReview,
           deleteReview,
           cartItems: cartItems,
-          users: users,
+          logInUser,
+          user: user,
         }}
       />
     </div>

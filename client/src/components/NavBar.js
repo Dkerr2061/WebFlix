@@ -1,9 +1,10 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 
-function NavBar() {
+function NavBar({ user, logOutUser }) {
   const location = useLocation();
   const navigate = useNavigate();
+  // console.log(logOutUser);
 
   function navigateToCart() {
     navigate("/cart_items");
@@ -12,47 +13,55 @@ function NavBar() {
   return (
     <div className="navbar bg-gradient-to-r from-sky-500 to-indigo-500">
       <div className="navbar-start">
-        <div className="dropdown">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn glass bg-slate-800 btn-circle hover:animate-pulse"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        {user ? (
+          <div className="dropdown">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn glass bg-slate-800 btn-circle hover:animate-pulse"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h7"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h7"
+                />
+              </svg>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <NavLink to="/add_movie">Add Movie</NavLink>
+              </li>
+              <li>
+                <NavLink to="/reviews">View Reviews</NavLink>
+              </li>
+              <li>
+                <NavLink to="/store">Go to Store</NavLink>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <NavLink to="/add_movie">Add Movie</NavLink>
-            </li>
-            <li>
-              <NavLink to="/reviews">View Reviews</NavLink>
-            </li>
-            <li>
-              <NavLink to="/store">Go to Store</NavLink>
-            </li>
-            <li>
-              <NavLink to="/login">Login</NavLink>
-            </li>
-          </ul>
+        ) : null}
+        <div className="text-black mr-3 ml-3">
+          {user ? <a>Hello, {user.username}!</a> : null}
         </div>
-        <div className="ml-4 text-3xl text-black">
-          <a>User Name</a>
+        <div className="btn btn-primary hover:animate-pulse">
+          {user ? (
+            <NavLink onClick={logOutUser} to="/login">
+              Logout
+            </NavLink>
+          ) : (
+            <NavLink to="/login">Login</NavLink>
+          )}
         </div>
       </div>
       <div className="navbar-center">

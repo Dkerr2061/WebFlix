@@ -12,6 +12,7 @@ import AddReview from "./pages/AddReview";
 import UpdateReview from "./pages/UpdateReview";
 import StoreList from "./components/StoreList";
 import CartList from "./components/CartList";
+import LoginForm from "./pages/LoginForm";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/cart_items",
         element: <CartList />,
+      },
+      {
+        path: "/login",
+        element: <LoginForm />,
       },
     ],
   },
