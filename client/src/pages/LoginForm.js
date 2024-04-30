@@ -8,7 +8,6 @@ function LoginForm() {
   });
   const { logInUser } = useOutletContext();
   const navigate = useNavigate();
-  // console.log(logInUser);
 
   function updateFormData(event) {
     setFormData({
