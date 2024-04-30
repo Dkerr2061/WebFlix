@@ -12,9 +12,10 @@ function MovieDetail() {
     description: "",
     price: "",
   });
+
   const { id } = useParams();
   const navigate = useNavigate();
-  const { updateMovie } = useOutletContext();
+  const { updateMovie, user } = useOutletContext();
 
   useEffect(() => {
     fetch(`/movies/${id}`)
@@ -78,9 +79,6 @@ function MovieDetail() {
                 </h4>
                 <p>{movie.description}</p>
                 <div className="card-actions">
-                  <button className="btn btn-primary hover:animate-pulse">
-                    Add to Cart
-                  </button>
                   <button
                     className="btn btn-primary hover:animate-pulse"
                     onClick={navigateToWriteReviews}
@@ -93,78 +91,79 @@ function MovieDetail() {
           </>
         ) : null}
       </div>
-      {/* Add the ternary for admin users here */}
-      <div className="text-center">
-        <h2 className="text-teal-300 text-5xl mb-4">Update Movie</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col items-center">
-          <h2>Movie Name:</h2>
-          <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
-            type="text"
-            name="name"
-            placeholder="Movie name"
-            onChange={handleOnChange}
-            value={updatedMovieData.name}
-            required
-          />
-          <h2>Movie Image:</h2>
-          <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
-            type="text"
-            name="image"
-            placeholder="Movie image"
-            onChange={handleOnChange}
-            value={updatedMovieData.image}
-            required
-          />
-          <h2>Release Year:</h2>
-          <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
-            type="text"
-            name="year"
-            placeholder="Movie Release Year"
-            onChange={handleOnChange}
-            value={updatedMovieData.year}
-            required
-          />
-          <h2>Director:</h2>
-          <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
-            type="text"
-            name="director"
-            placeholder="Director"
-            onChange={handleOnChange}
-            value={updatedMovieData.director}
-            required
-          />
-          <h2>Description:</h2>
-          <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
-            type="text"
-            name="description"
-            placeholder="Description"
-            onChange={handleOnChange}
-            value={updatedMovieData.description}
-            required
-          />
-          <h2>Price:</h2>
-          <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
-            type="text"
-            name="price"
-            placeholder="Movie Price"
-            onChange={handleOnChange}
-            value={updatedMovieData.price}
-            required
-          />
-          <button
-            type="submit"
-            className="btn btn-outline btn-info hover:animate-pulse"
-          >
-            Update Movie
-          </button>
-        </form>
-      </div>
+      {user.type === "admin" ? (
+        <div className="text-center">
+          <h2 className="text-teal-300 text-5xl mb-4">Update Movie</h2>
+          <form onSubmit={handleSubmit} className="flex flex-col items-center">
+            <h2>Movie Name:</h2>
+            <input
+              className="input input-bordered input-info w-full max-w-xs mb-4"
+              type="text"
+              name="name"
+              placeholder="Movie name"
+              onChange={handleOnChange}
+              value={updatedMovieData.name}
+              required
+            />
+            <h2>Movie Image:</h2>
+            <input
+              className="input input-bordered input-info w-full max-w-xs mb-4"
+              type="text"
+              name="image"
+              placeholder="Movie image"
+              onChange={handleOnChange}
+              value={updatedMovieData.image}
+              required
+            />
+            <h2>Release Year:</h2>
+            <input
+              className="input input-bordered input-info w-full max-w-xs mb-4"
+              type="text"
+              name="year"
+              placeholder="Movie Release Year"
+              onChange={handleOnChange}
+              value={updatedMovieData.year}
+              required
+            />
+            <h2>Director:</h2>
+            <input
+              className="input input-bordered input-info w-full max-w-xs mb-4"
+              type="text"
+              name="director"
+              placeholder="Director"
+              onChange={handleOnChange}
+              value={updatedMovieData.director}
+              required
+            />
+            <h2>Description:</h2>
+            <input
+              className="input input-bordered input-info w-full max-w-xs mb-4"
+              type="text"
+              name="description"
+              placeholder="Description"
+              onChange={handleOnChange}
+              value={updatedMovieData.description}
+              required
+            />
+            <h2>Price:</h2>
+            <input
+              className="input input-bordered input-info w-full max-w-xs mb-4"
+              type="text"
+              name="price"
+              placeholder="Movie Price"
+              onChange={handleOnChange}
+              value={updatedMovieData.price}
+              required
+            />
+            <button
+              type="submit"
+              className="btn btn-outline btn-info hover:animate-pulse"
+            >
+              Update Movie
+            </button>
+          </form>
+        </div>
+      ) : null}
     </Slide>
   );
 }

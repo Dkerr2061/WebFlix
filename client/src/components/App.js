@@ -13,10 +13,12 @@ function App() {
   // Movie data and functions start here:
 
   useEffect(() => {
-    fetch("/movies")
-      .then((res) => res.json())
-      .then((movieData) => setMovies(movieData));
-  }, []);
+    fetch("/movies").then((res) => {
+      if (res.ok) {
+        res.json().then((movieData) => setMovies(movieData));
+      }
+    });
+  }, [user]);
 
   function addMovie(movieData) {
     fetch("/movies", {
@@ -211,6 +213,7 @@ function App() {
     }).then((res) => {
       if (res.ok) {
         setUser(null);
+        navigate("/login");
       } else {
         alert("Unable to log out.");
       }
@@ -220,7 +223,7 @@ function App() {
   return (
     <div>
       {!user ? <Navigate to="/login" /> : null}
-      <NavBar user={user} logOutUser={logOutUser} />
+      <NavBar user={user} logOutUser={logOutUser} cartItems={cartItems} />
       <Outlet
         context={{
           movies: movies,

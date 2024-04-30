@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Zoom } from "react-awesome-reveal";
 
-function Movie({ movie, deleteMovie }) {
+function Movie({ movie, deleteMovie, user }) {
   const { id } = movie;
   const navigate = useNavigate();
 
@@ -33,12 +33,14 @@ function Movie({ movie, deleteMovie }) {
               >
                 Movie Details
               </button>
-              <button
-                className="btn btn-primary hover:animate-pulse"
-                onClick={handleDelete}
-              >
-                Delete Movie
-              </button>
+              {user.type === "admin" ? (
+                <button
+                  className="btn btn-primary hover:animate-pulse"
+                  onClick={handleDelete}
+                >
+                  Delete Movie
+                </button>
+              ) : null}
             </div>
           </Zoom>
         </div>
