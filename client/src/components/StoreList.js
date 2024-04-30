@@ -3,10 +3,12 @@ import { useOutletContext } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 
 function StoreList() {
-  const { movies, users, cartItems } = useOutletContext();
+  const { movies, user, cartItems, addToCart } = useOutletContext();
 
   const storeComponent = movies.map((movie) => {
-    return <Store key={movie.id} movie={movie} />;
+    return (
+      <Store key={movie.id} movie={movie} user={user} addToCart={addToCart} />
+    );
   });
 
   return (

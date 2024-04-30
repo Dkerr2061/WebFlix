@@ -1,7 +1,11 @@
 import { Zoom } from "react-awesome-reveal";
 
-function Cart({ cartItem }) {
+function Cart({ cartItem, deleteCartItems }) {
   const { id, movie_cart, user_cart } = cartItem;
+
+  function handleDelete() {
+    deleteCartItems(id);
+  }
 
   return (
     <div className="card w-1/3 glass shadow-xl rounded-lg m-4">
@@ -24,7 +28,7 @@ function Cart({ cartItem }) {
             <div className="card-actions">
               <button
                 className="btn btn-primary hover:animate-pulse"
-                onClick={(e) => console.log(e)}
+                onClick={handleDelete}
               >
                 Remove From Cart
               </button>

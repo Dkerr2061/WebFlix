@@ -1,7 +1,19 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Zoom } from "react-awesome-reveal";
 
-function Store({ movie }) {
+function Store({ movie, user, addToCart }) {
+  const navigate = useNavigate();
+
+  function handleAddToCart() {
+    const newItem = {
+      user_id: user.id,
+      movie_id: movie.id,
+    };
+    addToCart(newItem);
+    navigate("/cart_items");
+  }
+
   return (
     <div className="card w-1/3 glass shadow-xl rounded-lg m-4">
       <Zoom>
@@ -21,7 +33,7 @@ function Store({ movie }) {
             <div className="card-actions">
               <button
                 className="btn btn-primary hover:animate-pulse"
-                onClick={(e) => console.log(e)}
+                onClick={handleAddToCart}
               >
                 Add To Cart
               </button>

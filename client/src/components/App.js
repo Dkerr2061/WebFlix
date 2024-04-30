@@ -171,6 +171,40 @@ function App() {
     });
   }, [user]);
 
+  function addToCart(newItem) {
+    fetch("/cart_items", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newItem),
+    }).then((res) => {
+      if (res.ok) {
+        res
+          .json()
+          .then((newItemData) => setCartItems([...cartItems, newItemData]));
+      } else if (res.status === 400) {
+        res.json().then((errorData) => alert(`Error: ${errorData.error}`));
+      }
+    });
+  }
+
+  function deleteCartItems(id) {
+    fetch(`/cart_items/${id}`, {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        setCartItems(
+          cartItems.filter((item) => {
+            return item.id !== id;
+          })
+        );
+      } else {
+        alert("Could not delete cart item");
+      }
+    });
+  }
+
   // CartItems and Store Functions end here
 
   // User Functions and data start here:
@@ -237,6 +271,8 @@ function App() {
           cartItems: cartItems,
           logInUser,
           user: user,
+          addToCart,
+          deleteCartItems,
         }}
       />
     </div>
