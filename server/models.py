@@ -54,8 +54,8 @@ class User(db.Model, SerializerMixin):
   movies = association_proxy('reviews', 'movie', creator = lambda m: Review(movie=m))
   movie_item = association_proxy('cart_items', 'movie_cart', creator = lambda mi: CartItem(movie_cart=mi))
 
-  @validates('username', 'password_hash')
-  def validate_username_and_password(self, key, value):
+  @validates('username')
+  def validate_username(self, key, value):
     if not value and (3 <= len(value) <= 25):
       raise ValueError(f'{key} must be 3 to 25 characters long.')
     else:

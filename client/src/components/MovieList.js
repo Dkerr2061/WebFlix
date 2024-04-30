@@ -5,6 +5,8 @@ import { Fade } from "react-awesome-reveal";
 function MovieList() {
   const { movies, deleteMovie } = useOutletContext();
 
+  // console.log(movies);
+
   const movieComponent = movies.map((movie) => {
     return <Movie key={movie.id} movie={movie} deleteMovie={deleteMovie} />;
   });

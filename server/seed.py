@@ -5,6 +5,7 @@ from random import randint, choice as rc
 
 # Local imports
 from app import app
+from config import bcrypt
 from models import db, Movie, User, Review, CartItem
 
 if __name__ == '__main__':
@@ -25,9 +26,17 @@ if __name__ == '__main__':
 
         movie3 = Movie(name="Dune", image="https://m.media-amazon.com/images/I/61QbqeCVm0L.jpg", year=2021, director="Denis Villeneuve", description="A mythic and emotionally charged hero's journey, \"Dune\" tells the story of Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, who must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive", price=21.95)
 
-        user1 = User(username="dkerr123", password_hash="abc123", type="admin")
-        user2 = User(username="clay456", password_hash="clay123", type="customer")
-        user3 = User(username="ana789", password_hash="ana123", type="customer")
+        password_1 = "abc123"
+        password_2 = "clay123"
+        password_3 = "ana123"
+
+        pw_hash_1 = bcrypt.generate_password_hash(password_1).decode('utf-8')
+        pw_hash_2 = bcrypt.generate_password_hash(password_2).decode('utf-8')
+        pw_hash_3 = bcrypt.generate_password_hash(password_3).decode('utf-8')
+
+        user1 = User(username="dkerr123", password_hash=pw_hash_1, type="admin")
+        user2 = User(username="clay456", password_hash=pw_hash_2, type="customer")
+        user3 = User(username="ana789", password_hash=pw_hash_3, type="customer")
 
         cart_item1 = CartItem(movie_id=1, user_id=2)
         cart_item2 = CartItem(movie_id=2, user_id=2)

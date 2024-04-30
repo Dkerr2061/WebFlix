@@ -7,7 +7,7 @@ from flask import request, make_response, session
 from flask_restful import Resource
 
 # Local imports
-from config import app, db, api
+from config import app, db, api, bcrypt
 # Add your model imports
 from models import Movie, User, CartItem, Review
 
@@ -85,7 +85,7 @@ class AllUsers(Resource):
 
     def get(self):
         users = User.query.all()
-        body = [user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart')) for user in users]
+        body = [user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart', '-password_hash')) for user in users]
         return make_response(body, 200)
     
     def post(self):
@@ -93,7 +93,7 @@ class AllUsers(Resource):
             new_user = User(username=request.json.get('username'), password_hash=request.json.get('password_hash'), type=request.json.get('type'))
             db.session.add(new_user)
             db.session.commit()
-            body = new_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
+            body = new_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart', '-password_hash'))
             return make_response(body, 201)
         except:
             body = {"error": "Could not create new user."}
@@ -107,9 +107,9 @@ class UserByID(Resource):
         user = db.session.get(User, id)
         if user:
             try:
-                body = user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
+                body = user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart', '-password_hash'))
 
-                body['movies'] = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart')) for movie in user.movies]
+                body['movies'] = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart', '-password_hash')) for movie in user.movies]
 
                 return make_response(body, 200)
             except:
@@ -143,7 +143,7 @@ class AllReviews(Resource):
 
     def get(self):
         reviews = Review.query.all()
-        body = [review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items')) for review in reviews]
+        body = [review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items', '-user.password_hash')) for review in reviews]
         return make_response(body, 200)
     
     def post(self):
@@ -151,7 +151,7 @@ class AllReviews(Resource):
             new_review = Review(rating=request.json.get('rating'), text=request.json.get('text'), movie_id=request.json.get('movie_id'), user_id=request.json.get('user_id'))
             db.session.add(new_review)
             db.session.commit()
-            body = new_review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items'))
+            body = new_review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items', '-user.password_hash'))
             return make_response(body, 201)
         except:
             body = {"error": "Review could not be created."}
@@ -166,7 +166,7 @@ class ReviewByID(Resource):
         review = db.session.get(Review, id)
         if review:
             try:
-                body = review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items'))
+                body = review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items', '-user.password_hash'))
                 return make_response(body, 200)
             except:
                 body = {"error": "Could not fetch review at this moment."}
@@ -182,7 +182,7 @@ class ReviewByID(Resource):
                 for attr in request.json:
                     setattr(review, attr, request.json[attr])
                 db.session.commit()
-                body = review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items'))
+                body = review.to_dict(rules=('-movie.reviews', '-user.reviews', '-user.cart_items', '-movie.cart_items', '-user.password_hash'))
                 return make_response(body, 201)
             except:
                 body = {"error": "Review could not be updated."}
@@ -208,7 +208,7 @@ class AllCartItems(Resource):
 
     def get(self):
         cart_items = CartItem.query.all()
-        body = [cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews')) for cart_item in cart_items]
+        body = [cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews', '-user_cart.password_hash')) for cart_item in cart_items]
         return make_response(body, 200)
     
     def post(self):
@@ -216,7 +216,7 @@ class AllCartItems(Resource):
             new_cart_item = CartItem(movie_id=request.json.get('movie_id'), user_id=request.json.get('user_id'))
             db.session.add(new_cart_item)
             db.session.commit()
-            body = new_cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews'))
+            body = new_cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews', '-user_cart.password_hash'))
             return make_response(body, 201)
         except:
             body = {"error": "Could not add item to cart."}
@@ -230,7 +230,7 @@ class CartItemsByID(Resource):
         cart_item = db.session.get(CartItem, id)
         if cart_item:
             try:
-                body = cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews'))
+                body = cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews', '-user_cart.password_hash'))
                 return make_response(body, 200)
             except:
                 body = {"error": "Could not process request."}
@@ -258,7 +258,7 @@ class Login(Resource):
         password = request.json.get('password_hash')
         current_user = User.query.filter(User.username == username).first()
 
-        if(current_user and current_user.password_hash == password):  
+        if(current_user and bcrypt.check_password_hash(current_user.password_hash, password)):  
             session['user_id'] = current_user.id          
             body = current_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
 
