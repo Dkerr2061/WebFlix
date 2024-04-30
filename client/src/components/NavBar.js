@@ -13,6 +13,9 @@ function NavBar({ user, logOutUser, cartItems }) {
     return accumulator + currentValue;
   }, 0);
 
+  const searchBarAppear =
+    location.pathname === "/" || location.pathname === "/store";
+
   function navigateToCart() {
     navigate("/cart_items");
   }
@@ -83,7 +86,7 @@ function NavBar({ user, logOutUser, cartItems }) {
         ) : null}
       </div>
       <div className="navbar-end">
-        {location.pathname === "/" && (
+        {searchBarAppear && (
           <div className="form-control mr-2">
             <input
               type="text"
@@ -93,7 +96,7 @@ function NavBar({ user, logOutUser, cartItems }) {
           </div>
         )}
         <div className="flex-none">
-          {user ? (
+          {user && cartItems.length > 0 ? (
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}

@@ -207,9 +207,18 @@ api.add_resource(ReviewByID, '/reviews/<int:id>')
 class AllCartItems(Resource):
 
     def get(self):
-        cart_items = CartItem.query.all()
-        body = [cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews', '-user_cart.password_hash')) for cart_item in cart_items]
-        return make_response(body, 200)
+        user = User.query.filter(User.id == session.get('user_id')).first()
+
+        if user and user.type == 'admin':
+            cart_items = CartItem.query.all()
+            body = [cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews', '-user_cart.password_hash')) for cart_item in cart_items]
+            return make_response(body, 200)
+        elif user and user.type == 'customer':
+            body = [cart_item.to_dict(rules=('-movie_cart.cart_items', '-user_cart.cart_items', '-movie_cart.reviews', '-user_cart.reviews', '-user_cart.password_hash')) for cart_item in list(set(user.cart_items))]
+            return make_response(body, 200)
+        else:
+            body = {"error": "Something went wrong..."}
+            return make_response(body, 400)
     
     def post(self):
         try:

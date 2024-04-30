@@ -95,7 +95,7 @@ function App() {
     fetch("/reviews")
       .then((res) => res.json())
       .then((reviewData) => setReviews(reviewData));
-  }, []);
+  }, [movies]);
 
   function addReview(newReview) {
     fetch("/reviews", {
@@ -169,7 +169,7 @@ function App() {
         res.json().then((errorData) => console.log(errorData.error));
       }
     });
-  }, []);
+  }, [user]);
 
   // CartItems and Store Functions end here
 
