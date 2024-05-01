@@ -6,9 +6,24 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [cartItems, setCartItems] = useState([]);
-  // const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
+  const [searchText, setSearchText] = useState("");
+
   const navigate = useNavigate();
+
+  // Searchbar Functionality:
+
+  const filteredMovies = movies.filter((movie) => {
+    if (searchText === "") {
+      return true;
+    } else {
+      return movie.name.toLowerCase().includes(searchText.toLowerCase());
+    }
+  });
+
+  function onSearchText(event) {
+    setSearchText(event.target.value);
+  }
 
   // Movie data and functions start here:
 
@@ -254,13 +269,21 @@ function App() {
     });
   }
 
+  // User functions end here
+
   return (
     <div>
       {!user ? <Navigate to="/login" /> : null}
-      <NavBar user={user} logOutUser={logOutUser} cartItems={cartItems} />
+      <NavBar
+        user={user}
+        logOutUser={logOutUser}
+        cartItems={cartItems}
+        onSearchText={onSearchText}
+        searchText={searchText}
+      />
       <Outlet
         context={{
-          movies: movies,
+          movies: filteredMovies,
           addMovie,
           updateMovie,
           deleteMovie,

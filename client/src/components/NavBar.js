@@ -1,7 +1,7 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 
-function NavBar({ user, logOutUser, cartItems }) {
+function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -92,6 +92,8 @@ function NavBar({ user, logOutUser, cartItems }) {
               type="text"
               placeholder="Search"
               className="input input-bordered w-24 md:w-auto glass bg-slate-800"
+              onChange={onSearchText}
+              value={searchText}
             />
           </div>
         )}
