@@ -307,6 +307,28 @@ class Logout(Resource):
 
 api.add_resource(Logout, '/logout')
 
+class Signup(Resource):
+
+    def post(self):
+        try:
+            password = request.json.get('password_hash')
+            pw_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+            new_user = User(username=request.json.get('username'), password_hash=pw_hash, type='customer')
+            db.session.add(new_user)
+            db.session.commit()
+            session['user_id'] = new_user.id
+
+            body = new_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart', '-password_hash'))
+
+            body['movies'] = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart', '-password_hash')) for movie in new_user.movies]
+
+            return make_response(body, 201)
+        except:
+            body = {"error": "Could not create new user."}
+            return make_response(body, 400)
+
+api.add_resource(Signup, '/signup')
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

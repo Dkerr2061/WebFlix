@@ -269,11 +269,30 @@ function App() {
     });
   }
 
+  function signUpUser(newUser) {
+    fetch("/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((newUserData) => {
+          setUser(newUserData);
+          navigate("/");
+        });
+      } else if (res.status === 400) {
+        res.json().then((errorData) => alert(`Error: ${errorData.error}`));
+      }
+    });
+  }
+
   // User functions end here
 
   return (
     <div>
-      {!user ? <Navigate to="/login" /> : null}
+      {!user ? <Navigate to="/signup" /> : null}
       <NavBar
         user={user}
         logOutUser={logOutUser}
@@ -296,6 +315,7 @@ function App() {
           user: user,
           addToCart,
           deleteCartItems,
+          signUpUser,
         }}
       />
     </div>

@@ -13,6 +13,7 @@ import UpdateReview from "./pages/UpdateReview";
 import StoreList from "./components/StoreList";
 import CartList from "./components/CartList";
 import LoginForm from "./pages/LoginForm";
+import SignupForm from "./pages/SignupForm";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginForm />,
+      },
+      {
+        path: "/signup",
+        element: <SignupForm />,
       },
     ],
   },
