@@ -65,23 +65,21 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
             </ul>
           </div>
         ) : null}
-        <div className="text-black mr-3 ml-3">
-          {user ? <a>Hello, {user.username}!</a> : null}
-        </div>
-        <div className="btn btn-primary hover:animate-pulse">
+        <div className="text-black font-serif mr-3 ml-3">
           {user ? (
-            <NavLink onClick={logOutUser} to="/login">
-              Logout
-            </NavLink>
-          ) : (
-            <NavLink to="/login">Login</NavLink>
-          )}
+            <div>
+              <a className="mr-3 italic font-bold">Hello, {user.username}!</a>
+              <a className="font-bold text-slate-600">
+                Your User ID: {user.id}
+              </a>
+            </div>
+          ) : null}
         </div>
       </div>
       <div className="navbar-center">
         {user ? (
           <Fade delay={500}>
-            <button className="btn glass bg-slate-800 text-5xl hover:animate-pulse">
+            <button className="btn glass text-5xl text-black font-serif hover:animate-pulse">
               <NavLink to="/">🎥 WebFlix 🎥</NavLink>
             </button>
           </Fade>
@@ -99,7 +97,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
             />
           </div>
         )}
-        <div className="flex-none">
+        <div className="flex-none mr-2">
           {user && cartItems.length > 0 ? (
             <div className="dropdown dropdown-end">
               <div
@@ -148,6 +146,15 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
               </div>
             </div>
           ) : null}
+        </div>
+        <div className="btn btn-primary hover:animate-pulse">
+          {user ? (
+            <NavLink onClick={logOutUser} to="/login">
+              Logout
+            </NavLink>
+          ) : (
+            <NavLink to="/login">Login</NavLink>
+          )}
         </div>
       </div>
     </div>

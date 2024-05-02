@@ -74,8 +74,7 @@ function MovieDetail() {
                 <h2 className="card-title">{movie.name}</h2>
                 <h3> Movie Id: {movie.id}</h3>
                 <h4 className="mb-2 text-xl italic tracking-tight text-gray-900 dark:text-white">
-                  Release Year: {movie.year} | Director: {movie.director} |
-                  Price: ${movie.price}
+                  Release Year: {movie.year} | Director: {movie.director}
                 </h4>
                 <p>{movie.description}</p>
                 <div className="card-actions">

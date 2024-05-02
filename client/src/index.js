@@ -14,6 +14,7 @@ import StoreList from "./components/StoreList";
 import CartList from "./components/CartList";
 import LoginForm from "./pages/LoginForm";
 import SignupForm from "./pages/SignupForm";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignupForm />,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage />,
       },
     ],
   },

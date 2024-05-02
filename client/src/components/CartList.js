@@ -1,5 +1,5 @@
 import Cart from "./Cart";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 
 function CartList() {
@@ -14,6 +14,12 @@ function CartList() {
     );
   });
 
+  const navigate = useNavigate();
+
+  function toCheckout() {
+    navigate("/checkout");
+  }
+
   const moviePrice = cartItems.map((item) => {
     return item.movie_cart.price;
   });
@@ -26,16 +32,46 @@ function CartList() {
 
   return (
     <Fade cascade delay={200}>
-      <div>
-        <span>${roundedTotal}</span>
-      </div>
-      {cartComponent.length > 0 ? (
-        <div className="flex flex-wrap justify-center bg-gradient-to-r from-cyan-500 to-blue-500">
-          {cartComponent}
+      <section className="py-24 relative bg-gradient-to-r from-cyan-500 to-blue-500">
+        <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
+          <h2 className="title font-serif font-bold underline text-4xl leading-10 mb-8 text-center text-black">
+            Shopping Cart
+          </h2>
+          {cartComponent.length > 0 ? (
+            <div className="rounded-3xl border-2 border-gray-200 p-4 lg:p-8 flex-nowrap mb-4 max-lg:max-w-lg max-lg:mx-auto gap-y-4 glass ">
+              {cartComponent}
+            </div>
+          ) : (
+            <div className="text-center">
+              <h1 className="text-black text-6xl font-serif">
+                Your cart is Empty
+              </h1>
+            </div>
+          )}
         </div>
-      ) : (
-        <h1>Your cart is empty!</h1>
-      )}
+        <div className="flex flex-col md:flex-row items-center md:items-center justify-between lg:px-6 pb-6 border-b border-gray-200 max-lg:max-w-lg max-lg:mx-auto">
+          <h5 className="text-gray-900 font-serif font-semibold underline text-2xl leading-9 w-full max-md:text-center max-md:mb-4">
+            Subtotal
+          </h5>
+
+          <div className="flex items-center justify-between gap-5 ">
+            <h6 className="font-serif font-bold text-3xl lead-10 text-black">
+              ${roundedTotal}
+            </h6>
+          </div>
+        </div>
+        <div className="max-lg:max-w-lg max-lg:mx-auto">
+          <p className="font-normal text-base leading-7 text-gray-500 text-center mb-5 mt-6">
+            Shipping taxes, and discounts calculated at checkout
+          </p>
+          <button
+            className="rounded-full py-4 px-6 bg-indigo-600 text-white font-semibold text-lg w-full text-center transition-all duration-500 hover:bg-indigo-700 "
+            onClick={toCheckout}
+          >
+            Checkout
+          </button>
+        </div>
+      </section>
     </Fade>
   );
 }
