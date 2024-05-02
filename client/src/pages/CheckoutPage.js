@@ -7,9 +7,9 @@ function CheckoutPage() {
     navigate("/");
   }
   return (
-    <div className="flex h-screen flex-col bg-white">
+    <div className="flex h-screen flex-col bg-white mt-10">
       <img
-        src="https://thecinemaarchives.com/wp-content/uploads/2019/05/pulp-fiction-dance-shot.jpg"
+        src="https://images.pexels.com/photos/255419/pexels-photo-255419.jpeg?cs=srgb&dl=pexels-pixabay-255419.jpg&fm=jpg"
         alt=""
         className="h-64 w-full object-cover"
       />

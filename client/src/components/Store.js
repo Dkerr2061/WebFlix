@@ -17,7 +17,7 @@ function Store({ movie, user, addToCart }) {
     <div className="rounded-3xl border-2 border-slate-700 p-4 lg:p-8 flex-nowrap mb-4 max-lg:max-w-lg max-lg:mx-auto gap-y-4 glass ">
       <Zoom>
         <div className="flex items-center justify-center w-full mt-2">
-          <h2 className="italic font-bold font-serif text-4xl leading-9 text-slate-700 mx-4">
+          <h2 className="italic font-bold font-serif text-4xl leading-9 text-slate-700 mx-4 underline">
             {movie.name}
           </h2>
         </div>

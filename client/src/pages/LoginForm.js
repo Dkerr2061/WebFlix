@@ -24,7 +24,7 @@ function LoginForm() {
   }
 
   return (
-    <div className="text-center">
+    <div className="text-center mt-10">
       <Zoom delay={200}>
         <h2 className="text-teal-300 text-5xl mb-4">Login</h2>
       </Zoom>

@@ -23,7 +23,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
   }
 
   return (
-    <div className="navbar bg-gradient-to-r from-sky-500 to-indigo-500">
+    <div className="navbar bg-gradient-to-r from-sky-500 to-indigo-500 fixed top-0 w-full z-50">
       <div className="navbar-start">
         {user ? (
           <div className="dropdown">

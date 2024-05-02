@@ -59,7 +59,7 @@ function MovieDetail() {
 
   return (
     <Slide delay={300}>
-      <div className="flex flex-wrap justify-center page-gradient items-center">
+      <div className="flex flex-wrap justify-center page-gradient items-center mt-10">
         {movie ? (
           <>
             <div className="card lg:card-side bg-base-100 shadow-xl m-4">

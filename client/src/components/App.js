@@ -300,6 +300,7 @@ function App() {
         onSearchText={onSearchText}
         searchText={searchText}
       />
+      <br />
       <Outlet
         context={{
           movies: filteredMovies,

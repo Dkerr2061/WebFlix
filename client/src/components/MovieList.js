@@ -18,7 +18,7 @@ function MovieList() {
 
   return (
     <Fade cascade delay={200}>
-      <div className="flex flex-wrap justify-center bg-gradient-to-r from-cyan-500 to-blue-500">
+      <div className="flex flex-wrap justify-center bg-gradient-to-r from-cyan-500 to-blue-500 mt-10">
         {movieComponent}
       </div>
     </Fade>
