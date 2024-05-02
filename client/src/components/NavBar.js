@@ -13,6 +13,8 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
     return accumulator + currentValue;
   }, 0);
 
+  const roundedTotal = movieTotal.toFixed(2);
+
   const searchBarAppear =
     location.pathname === "/" || location.pathname === "/store";
 
@@ -133,7 +135,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
                   <span className="font-bold text-lg">
                     {cartItems.length} Items
                   </span>
-                  <span className="text-info">Subtotal: ${movieTotal}</span>
+                  <span className="text-info">Subtotal: ${roundedTotal}</span>
                   <div className="card-actions">
                     <button
                       className="btn btn-primary btn-block"

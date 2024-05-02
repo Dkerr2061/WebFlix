@@ -3,11 +3,17 @@ import { Fade } from "react-awesome-reveal";
 import Review from "./Review";
 
 function ReviewList() {
-  const { reviews, deleteReview } = useOutletContext();
+  const { reviews, deleteReview, user } = useOutletContext();
+  const current_user = user;
 
   const reviewComponent = reviews.map((review) => {
     return (
-      <Review key={review.id} review={review} deleteReview={deleteReview} />
+      <Review
+        key={review.id}
+        review={review}
+        deleteReview={deleteReview}
+        current_user={current_user}
+      />
     );
   });
 

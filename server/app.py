@@ -269,9 +269,9 @@ class Login(Resource):
 
         if(current_user and bcrypt.check_password_hash(current_user.password_hash, password)):  
             session['user_id'] = current_user.id          
-            body = current_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
+            body = current_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart', '-password_hash'))
 
-            body['movies'] = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart')) for movie in list(set(current_user.movies))]
+            body['movies'] = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart', '-password_hash')) for movie in list(set(current_user.movies))]
 
             return make_response(body, 200)
         else:
@@ -285,9 +285,9 @@ class CheckSession(Resource):
     def get(self):
         current_user = db.session.get(User, session.get('user_id'))
         if current_user:         
-            body = current_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart'))
+            body = current_user.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart', '-password_hash'))
 
-            body['movies'] = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart')) for movie in list(set(current_user.movies))]
+            body['movies'] = [movie.to_dict(rules=('-reviews.movie', '-reviews.user', '-cart_items.movie_cart', '-cart_items.user_cart', '-password_hash')) for movie in list(set(current_user.movies))]
 
             return make_response(body, 200)
         else:

@@ -22,12 +22,12 @@ function CartList() {
     return a + v;
   }, 0);
 
-  console.log(moviePrice);
+  const roundedTotal = totalCartPrice.toFixed(2);
 
   return (
     <Fade cascade delay={200}>
       <div>
-        <span>${totalCartPrice}</span>
+        <span>${roundedTotal}</span>
       </div>
       {cartComponent.length > 0 ? (
         <div className="flex flex-wrap justify-center bg-gradient-to-r from-cyan-500 to-blue-500">

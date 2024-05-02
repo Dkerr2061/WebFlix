@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Zoom } from "react-awesome-reveal";
 
-function Review({ review, deleteReview }) {
+function Review({ review, deleteReview, current_user }) {
   const { id, movie, user, text, rating, movie_id, user_id } = review;
   const navigate = useNavigate();
 
@@ -28,25 +28,27 @@ function Review({ review, deleteReview }) {
             {movie.name} Reviewed by: {user.username}
           </h2>
           <h6 className="mb-2 text-xl italic tracking-tight text-gray-900 dark:text-white">
-            Rating: {rating} | Movie ID: {movie_id} | User ID: {user_id}
+            Rating: {rating} | Movie ID: {movie_id}
           </h6>
           <p>{text}</p>
-          <Zoom delay={200}>
-            <div className="card-actions justify-end">
-              <button
-                className="btn btn-primary hover:animate-pulse"
-                onClick={navigateToEdit}
-              >
-                Edit Review
-              </button>
-              <button
-                className="btn btn-primary hover:animate-pulse"
-                onClick={handleDelete}
-              >
-                Delete Review
-              </button>
-            </div>
-          </Zoom>
+          {current_user.id === user_id ? (
+            <Zoom delay={200}>
+              <div className="card-actions justify-end">
+                <button
+                  className="btn btn-primary hover:animate-pulse"
+                  onClick={navigateToEdit}
+                >
+                  Edit Review
+                </button>
+                <button
+                  className="btn btn-primary hover:animate-pulse"
+                  onClick={handleDelete}
+                >
+                  Delete Review
+                </button>
+              </div>
+            </Zoom>
+          ) : null}
         </div>
       </Zoom>
     </div>
