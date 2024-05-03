@@ -23,7 +23,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
   }
 
   return (
-    <div className="navbar bg-gradient-to-r from-sky-500 to-indigo-500 fixed top-0 w-full z-50">
+    <div className="navbar bg-blue-600 fixed top-0 w-full z-50">
       <div className="navbar-start">
         {user ? (
           <div className="dropdown">
@@ -65,11 +65,11 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
             </ul>
           </div>
         ) : null}
-        <div className="text-black font-serif mr-3 ml-3">
+        <div className="text-stone-100 font-serif mr-3 ml-3">
           {user ? (
             <div>
               <a className="mr-3 italic font-bold">Hello, {user.username}!</a>
-              <a className="font-bold text-slate-600">
+              <a className="font-bold text-stone-300">
                 Your User ID: {user.id}
               </a>
             </div>
@@ -79,7 +79,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
       <div className="navbar-center">
         {user ? (
           <Fade delay={500}>
-            <button className="btn glass text-5xl text-black font-serif hover:animate-pulse">
+            <button className="btn glass text-5xl text-black font-serif italic hover:animate-pulse">
               <NavLink to="/">🎥 WebFlix 🎥</NavLink>
             </button>
           </Fade>
@@ -147,15 +147,11 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
             </div>
           ) : null}
         </div>
-        <div className="btn btn-primary hover:animate-pulse">
-          {user ? (
-            <NavLink onClick={logOutUser} to="/login">
-              Logout
-            </NavLink>
-          ) : (
-            <NavLink to="/login">Login</NavLink>
-          )}
-        </div>
+        {user ? (
+          <div className="btn btn-primary hover:animate-pulse">
+            <button onClick={logOutUser}>Logout</button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

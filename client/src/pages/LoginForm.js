@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { Zoom, Slide } from "react-awesome-reveal";
 
 function LoginForm() {
@@ -8,7 +8,6 @@ function LoginForm() {
     password_hash: "",
   });
   const { logInUser } = useOutletContext();
-  const navigate = useNavigate();
 
   function updateFormData(event) {
     setFormData({
@@ -24,43 +23,68 @@ function LoginForm() {
   }
 
   return (
-    <div className="text-center mt-10">
-      <Zoom delay={200}>
-        <h2 className="text-teal-300 text-5xl mb-4">Login</h2>
-      </Zoom>
-      <Slide cascade delay={500}>
-        <form onSubmit={handleSubmit} className="flex flex-col items-center">
-          <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
-            type="text"
-            name="username"
-            placeholder="UserName"
-            onChange={updateFormData}
-            value={formData.username}
-            required
-          />
-
-          <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
-            type="password"
-            name="password_hash"
-            placeholder="Password"
-            onChange={updateFormData}
-            value={formData.password_hash}
-            required
-          />
-
-          <Zoom delay={700}>
-            <button
-              type="submit"
-              className="btn btn-outline btn-info hover:animate-pulse"
+    <Zoom>
+      <div className="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
+        <Slide>
+          <div className="flex shadow-md">
+            <div
+              className="flex flex-wrap content-center justify-center rounded-l-md bg-white"
+              style={{ width: "24rem", height: "32rem" }}
             >
-              Login
-            </button>
-          </Zoom>
-        </form>
-      </Slide>
-    </div>
+              <div className="w-72">
+                <h1 className="text-xl font-serif font-semibold text-gray-900">
+                  Welcome Back!
+                </h1>
+                <form className="mt-4" onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <label className="mb-2 block text-xs font-semibold text-gray-700">
+                      Username
+                    </label>
+                    <input
+                      className="input input-bordered input-info w-full max-w-xs mb-4"
+                      type="text"
+                      name="username"
+                      placeholder="UserName"
+                      onChange={updateFormData}
+                      value={formData.username}
+                      required
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="mb-2 block text-xs font-semibold font-serif text-gray-700">
+                      Password
+                    </label>
+                    <input
+                      className="input input-bordered input-info w-full max-w-xs mb-4"
+                      type="password"
+                      name="password_hash"
+                      placeholder="Password"
+                      onChange={updateFormData}
+                      value={formData.password_hash}
+                      required
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <button
+                      className="mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-blue-900 px-2 py-1.5 rounded-md"
+                      type="submit"
+                    >
+                      Login
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div
+              className="flex flex-wrap content-center justify-center rounded-r-md"
+              style={{ width: "24rem", height: "32rem" }}
+            >
+              <img src="./images/Web.png" alt="Webflix" />
+            </div>
+          </div>
+        </Slide>
+      </div>
+    </Zoom>
   );
 }
 
