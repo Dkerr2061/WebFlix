@@ -2,96 +2,105 @@
 
 ## Learning Goals
 
-- Discuss the basic directory structure of a full-stack Flask/React application.
-- Carry out the first steps in creating your Phase 4 project.
+- What I set out to learn with this project was the following:
+  -Create an app that uses a Flask backend with a React frontend.
+
+  -RESTful API endpoints for CRUD operations on movies, users, reviews, and cart items.
+
+  -Create animation effects using React Awesome Reveal to enhance user experience.
+
+  -Integrate Tailwind CSS and Daisy UI for responsive and visually appealing UI.
+
+  -Create 4 tables which have a one to many relationships and a many to many relationship.
+
+  -Create new users through the front end and secure their passwords with Bcrypt.
+
+  -Have existing users login and create sessions to keep them logged in even when they refresh the page.
+
+  -Create at least 5 routes which the client can use to navigate the website.
+
+  -Have the database store information for movies, cart, users and reviews.
+
+  -Have the front end display the desired information.
+
+  -Have customers browse movies, view movie details, view reviews, wrtie reviews, add movies to cart, remove movies from cart and checkout.
+
+  -Have admin users do everything that customers can do, plus add, update and delete movies.
+
 
 ---
 
-## Introduction
+## Overview
 
+This project is a web application developed using Flask SQLAlchemy for the backend and React for the frontend. It incorporates authentication with bcrypt, follows RESTful API practices, and utilizes Tailwind CSS, Daisy UI, and React Awesome Reveal for styling and animations.
 
-## Where Do I Start?
+---
 
-Just as with your Phase 3 Project, this will likely be one of the biggest
-projects you've undertaken so far. Your first task should be creating a Git
-repository to keep track of your work and roll back any undesired changes.
+## Database Structure
+The project's database consists of four main tables:
+
+-Movies: Stores information about movies.
+
+-Users: Contains user data including authentication details.
+
+-Reviews: Connects users and movies, allowing users to write reviews for movies.
+
+-Cart Items: Represents the items in the user's shopping cart, linking users and movies.
 
 ---
 
 ## Setup
 
-### `server/`
+To start:
 
-The `server/` directory contains all of your backend code.
+1. clone repository:
+  ```
+  git clone git@github.com:Dkerr2061/webflix.git
+  ```
+2. Install python dependancies:
+  ```
+  pipenv install
+  ```
+3. Install javascript dependancies:
+  ```
+  cd client
+  npm install
+  ```
+4. Start backend:
+  ```
+  pipenv shell
+  cd server
+  python app.py
+  ```
+5. Start frontend:
+  ```
+  cd client
+  npm start
+  ```
+6. Enjoy!
 
-`app.py` is your Flask application. You'll want to use Flask to build a simple
-API backend like we have in previous modules. You should use Flask-RESTful for
-your routes. You should be familiar with `models.py` and `seed.py` by now, but
-remember that you will need to use Flask-SQLAlchemy, Flask-Migrate, and
-SQLAlchemy-Serializer instead of SQLAlchemy and Alembic in your models.
 
-The project contains a default `Pipfile` with some basic dependencies. You may
-adapt the `Pipfile` if there are additional dependencies you want to add for
-your project.
+---
 
-To download the dependencies for the backend server, run:
+## Usage
 
-```console
-pipenv install
-pipenv shell
-```
+- Register or log in to access the application features.
 
-You can run your Flask API on [`localhost:5555`](http://localhost:5555) by
-running:
+- Browse movies, add them to your cart, and write reviews.
 
-```console
-python server/app.py
-```
+- Manage your cart items and view your reviews.
 
-Check that your server serves the default route `http://localhost:5555`. You
-should see a web page with the heading "Project Server".
+- Log out when finished using the application.
 
-### `client/`
+---
 
-The `client/` directory contains all of your frontend code. The file
-`package.json` has been configured with common React application dependencies,
-include `react-router-dom`. The file also sets the `proxy` field to forward
-requests to `"http://localhost:5555". Feel free to change this to another port-
-just remember to configure your Flask app to use another port as well!
-
-To download the dependencies for the frontend client, run:
-
-```console
-npm install --prefix client
-```
-
-You can run your React app on [`localhost:3000`](http://localhost:3000) by
-running:
-
-```sh
-npm start --prefix client
-```
-
-Check that your the React client displays a default page
-`http://localhost:3000`. You should see a web page with the heading "Project
-Client".
-
-## Generating Your Database
-
-NOTE: The initial project directory structure does not contain the `instance` or
-`migrations` folders. Change into the `server` directory:
-
-```console
-cd server
-```
-
-Then enter the commands to create the `instance` and `migrations` folders and
-the database `app.db` file:
-
-```
-flask db init
-flask db upgrade head
-```
+## Technologies Used
+-Flask SQLAlchemy
+-React
+-bcrypt
+-Tailwind CSS
+-Daisy UI
+-React Awesome Reveal
 
 ---
 
@@ -105,6 +114,9 @@ Happy coding!
 
 ---
 
-## Resources
+## Contributors
+David Kerr - Full Stack Developer
+
+
 
 

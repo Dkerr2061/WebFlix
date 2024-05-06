@@ -14,7 +14,7 @@ function Movie({ movie, deleteMovie, user }) {
   }
 
   return (
-    <div className="card w-1/3 glass shadow-xl rounded-lg m-4">
+    <div className="card w-1/3 bg-base-200 shadow-xl rounded-lg m-4">
       <Zoom>
         <figure className="px-10 pt-10">
           <img

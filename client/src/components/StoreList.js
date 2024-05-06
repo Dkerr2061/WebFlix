@@ -24,7 +24,7 @@ function StoreList() {
             <h2 className="title font-serif font-bold underline text-4xl leading-10 mb-8 text-center text-black">
               Store
             </h2>
-            <div className="rounded-3xl border-2 border-gray-200 p-4 lg:p-8 flex-nowrap mb-4 max-lg:max-w-lg max-lg:mx-auto gap-y-4 glass ">
+            <div className="rounded-3xl border-2 border-gray-200 p-4 lg:p-8 flex-nowrap mb-4 max-lg:max-w-lg max-lg:mx-auto gap-y-4 bg-base-200 ">
               {storeComponent}
             </div>
           </div>

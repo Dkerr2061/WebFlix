@@ -62,15 +62,15 @@ function MovieDetail() {
       <div className="flex flex-wrap justify-center page-gradient items-center mt-10">
         {movie ? (
           <>
-            <div className="card lg:card-side bg-base-100 shadow-xl m-4">
-              <figure className="px-10 pt-10">
-                <img
-                  src={movie.image}
-                  alt={movie.name}
-                  className="rounded-xl w-52 h-52 py-1.5"
-                />
-              </figure>
+            <div className="card lg:card-side bg-base-300 shadow-xl m-4">
               <div className="card-body items-center text-center">
+                <figure className="px-10 pt-10">
+                  <img
+                    src={movie.image}
+                    alt={movie.name}
+                    className="rounded-xl max-h-80 max-w-80 py-1.5"
+                  />
+                </figure>
                 <h2 className="card-title">{movie.name}</h2>
                 <h3> Movie Id: {movie.id}</h3>
                 <h4 className="mb-2 text-xl italic tracking-tight text-gray-900">
