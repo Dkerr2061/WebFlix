@@ -30,7 +30,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
             <div
               tabIndex={0}
               role="button"
-              className="btn glass bg-slate-800 btn-circle hover:animate-pulse"
+              className="btn glass bg-gray-500 btn-circle hover:animate-pulse"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
       <div className="navbar-center">
         {user ? (
           <Fade delay={500}>
-            <button className="btn glass text-5xl text-black font-serif italic hover:animate-pulse">
+            <button className="btn glass text-5xl text-white font-serif italic hover:animate-pulse">
               <NavLink to="/">🎥 WebFlix 🎥</NavLink>
             </button>
           </Fade>
@@ -91,7 +91,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
             <input
               type="text"
               placeholder="Search"
-              className="input input-bordered w-24 md:w-auto glass bg-slate-800"
+              className="input input-bordered w-24 md:w-auto glass bg-slate-600 text-white"
               onChange={onSearchText}
               value={searchText}
             />
@@ -120,7 +120,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
                       d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                     />
                   </svg>
-                  <span className="badge badge-sm indicator-item">
+                  <span className="badge badge-sm indicator-item rounded-full">
                     {cartItems.length}
                   </span>
                 </div>
@@ -148,7 +148,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
           ) : null}
         </div>
         {user ? (
-          <div className="btn btn-primary hover:animate-pulse">
+          <div className="btn btn-primary hover:animate-pulse font-serif">
             <button onClick={logOutUser}>Logout</button>
           </div>
         ) : null}

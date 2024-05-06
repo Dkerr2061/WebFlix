@@ -7,7 +7,7 @@ function ErrorPage() {
     navigate("/");
   }
   return (
-    <div className="grid h-screen place-content-center bg-gradient-to-r from-cyan-500 to-blue-500 px-4">
+    <div className="grid h-screen place-content-center">
       <div className="text-center">
         <h1 className="text-9xl font-black text-gray-200">404</h1>
 

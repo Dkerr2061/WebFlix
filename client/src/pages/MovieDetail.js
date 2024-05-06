@@ -73,7 +73,7 @@ function MovieDetail() {
               <div className="card-body items-center text-center">
                 <h2 className="card-title">{movie.name}</h2>
                 <h3> Movie Id: {movie.id}</h3>
-                <h4 className="mb-2 text-xl italic tracking-tight text-gray-900 dark:text-white">
+                <h4 className="mb-2 text-xl italic tracking-tight text-gray-900">
                   Release Year: {movie.year} | Director: {movie.director}
                 </h4>
                 <p>{movie.description}</p>
@@ -92,8 +92,11 @@ function MovieDetail() {
       </div>
       {user.type === "admin" ? (
         <div className="text-center">
-          <h2 className="text-teal-300 text-5xl mb-4">Update Movie</h2>
-          <form onSubmit={handleSubmit} className="flex flex-col items-center">
+          <h2 className="text-teal-300 text-5xl my-4">Update Movie</h2>
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col items-center mb-4"
+          >
             <h2>Movie Name:</h2>
             <input
               className="input input-bordered input-info w-full max-w-xs mb-4"

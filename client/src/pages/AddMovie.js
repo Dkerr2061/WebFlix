@@ -41,7 +41,7 @@ function AddMovie() {
   return (
     <div className="text-center mt-10">
       <Zoom delay={200}>
-        <h2 className="text-teal-300 text-5xl mb-4">Add Movie</h2>
+        <h2 className="text-5xl text-slate-600 mb-4">Add Movie</h2>
       </Zoom>
       <Slide cascade delay={500}>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">

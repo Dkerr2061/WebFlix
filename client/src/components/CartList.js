@@ -32,7 +32,7 @@ function CartList() {
 
   return (
     <Fade cascade delay={200}>
-      <section className="py-24 relative bg-gradient-to-r from-cyan-500 to-blue-500">
+      <section className="py-24 relative">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
           <div className="mx-auto max-w-3xl">
             <header className="text-center">

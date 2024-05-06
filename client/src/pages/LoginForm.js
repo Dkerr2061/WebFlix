@@ -24,7 +24,7 @@ function LoginForm() {
 
   return (
     <Zoom>
-      <div className="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
+      <div className="flex flex-wrap min-h-screen w-full content-center justify-center py-10">
         <Slide>
           <div className="flex shadow-md">
             <div

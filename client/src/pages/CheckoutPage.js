@@ -7,9 +7,9 @@ function CheckoutPage() {
     navigate("/");
   }
   return (
-    <div className="flex h-screen flex-col bg-white mt-10">
+    <div className="flex h-screen flex-col mt-10">
       <img
-        src="https://images.pexels.com/photos/255419/pexels-photo-255419.jpeg?cs=srgb&dl=pexels-pixabay-255419.jpg&fm=jpg"
+        src="https://wallpaperswide.com/download/pirates_of_the_caribbean_on_stranger_tides_2-wallpaper-1920x1080.jpg"
         alt=""
         className="h-64 w-full object-cover"
       />
