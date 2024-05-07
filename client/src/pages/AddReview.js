@@ -82,8 +82,8 @@ function AddReview() {
             value={newReview.rating}
             required
           />
-          <input
-            className="input input-bordered input-accent w-full max-w-xs mb-4"
+          <textarea
+            className="textarea textarea-bordered textarea-accent textarea-lg w-full max-w-xs mb-4"
             type="text"
             name="text"
             placeholder="Review Text"

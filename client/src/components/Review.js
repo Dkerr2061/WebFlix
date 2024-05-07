@@ -64,6 +64,7 @@ function Review({ review, deleteReview, current_user }) {
           </div>
         </div>
       </Zoom>
+      <div className="divider divider-primary"></div>
     </div>
   );
 }
