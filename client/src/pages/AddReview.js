@@ -42,7 +42,7 @@ function AddReview() {
   }
 
   return (
-    <div className="text-center mt-10">
+    <div className="text-center mt-10 font-serif">
       <div>
         <img
           src="https://i0.wp.com/insidefilmroom.com/wp-content/uploads/2020/04/dune-1-1-e1586871398593.jpg?fit=2000%2C850&ssl=1"
@@ -51,7 +51,7 @@ function AddReview() {
         />
       </div>
       <Zoom delay={200}>
-        <h2 className="text-accent font-serif text-5xl mb-4">Add Review</h2>
+        <h2 className="text-accent font-serif text-5xl my-4">Add Review</h2>
       </Zoom>
       <Slide cascade delay={500}>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
@@ -94,7 +94,7 @@ function AddReview() {
           <Zoom delay={700}>
             <button
               type="submit"
-              className="btn btn-outline btn-accent hover:animate-pulse"
+              className="btn btn-accent hover:animate-pulse"
             >
               Add Review
             </button>

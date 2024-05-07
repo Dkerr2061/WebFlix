@@ -59,7 +59,12 @@ function MovieDetail() {
 
   return (
     <Slide delay={300}>
-      <div className="flex flex-wrap justify-center page-gradient items-center mt-10">
+      <div className="flex flex-wrap justify-center page-gradient items-center my-4">
+        <div>
+          <h1 className="text-center mt-10 mb-4 text-primary text-5xl font-serif font-bold underline">
+            Movie Info:
+          </h1>
+        </div>
         {movie ? (
           <>
             <div className="card lg:card-side bg-base-300 shadow-xl m-4">

@@ -24,6 +24,11 @@ function MovieList() {
           alt="webflix"
           className="h-80 w-full object-cover"
         />
+        <div>
+          <h1 className="text-center font-serif font-bold underline text-5xl text-primary my-4">
+            Welcome! Here are the movies:
+          </h1>
+        </div>
         <div className="flex flex-wrap justify-center mt-2">
           {movieComponent}
         </div>

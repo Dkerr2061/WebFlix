@@ -55,7 +55,7 @@ function UpdateReview() {
   }
 
   return (
-    <div className="text-center mt-10">
+    <div className="text-center font-serif mt-10">
       <div>
         <img
           src="https://i.pinimg.com/originals/1d/40/96/1d40962412d6132ac5726978b097bdfe.jpg"
