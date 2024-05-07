@@ -11,7 +11,7 @@ function CheckoutPage() {
       <img
         src="https://wallpaperswide.com/download/pirates_of_the_caribbean_on_stranger_tides_2-wallpaper-1920x1080.jpg"
         alt=""
-        className="h-64 w-full object-cover"
+        className="h-96 w-full object-cover"
       />
 
       <div className="flex flex-1 items-center justify-center">

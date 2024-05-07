@@ -19,6 +19,13 @@ function ReviewList() {
 
   return (
     <Fade cascade delay={200}>
+      <div>
+        <img
+          src="./images/iron2.png"
+          alt="webflix"
+          className="h-96 w-full object-cover"
+        />
+      </div>
       <section className=" mt-10 justify-center flex">
         <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none font-serif">
           {reviewComponent}

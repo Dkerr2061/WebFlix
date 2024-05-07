@@ -56,14 +56,21 @@ function UpdateReview() {
 
   return (
     <div className="text-center mt-10">
+      <div>
+        <img
+          src="https://i.pinimg.com/originals/1d/40/96/1d40962412d6132ac5726978b097bdfe.jpg"
+          alt="webflix"
+          className="h-96 w-full object-cover"
+        />
+      </div>
       <Zoom delay={200}>
-        <h2 className="text-teal-300 text-5xl mb-4">Update Review</h2>
+        <h2 className="text-primary text-5xl my-4">Update Review</h2>
       </Zoom>
       <Slide cascade delay={500}>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
           <h2>Rating:</h2>
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="rating"
             placeholder="Rating"
@@ -73,7 +80,7 @@ function UpdateReview() {
           />
           <h2>Review Text:</h2>
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="text"
             placeholder="Review Text"
@@ -83,7 +90,7 @@ function UpdateReview() {
           />
           <h2>Movie Id:</h2>
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="movie_id"
             placeholder="Movie ID"
@@ -93,7 +100,7 @@ function UpdateReview() {
           />
           <h2>User Id:</h2>
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="user_id"
             placeholder="User ID"
@@ -104,7 +111,7 @@ function UpdateReview() {
           <Zoom delay={700}>
             <button
               type="submit"
-              className="btn btn-outline btn-info hover:animate-pulse"
+              className="btn btn-accent hover:animate-pulse"
             >
               Update Review
             </button>

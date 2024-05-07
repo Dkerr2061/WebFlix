@@ -18,13 +18,13 @@ function MovieList() {
 
   return (
     <Fade cascade delay={200}>
-      <div className="flex flex-col mt-10">
+      <div className="flex flex-col">
         <img
           src="https://filmgrab.files.wordpress.com/2014/05/2424.jpg"
           alt="webflix"
-          className="h-64 w-full object-cover"
+          className="h-80 w-full object-cover"
         />
-        <div className="flex flex-wrap justify-center mt-4">
+        <div className="flex flex-wrap justify-center mt-2">
           {movieComponent}
         </div>
       </div>

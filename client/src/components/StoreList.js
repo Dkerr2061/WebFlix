@@ -17,7 +17,7 @@ function StoreList() {
         <img
           src="https://i.pinimg.com/originals/35/a2/39/35a239796763957103a50dd3b41a92be.png"
           alt="webflix"
-          className="h-64 w-full object-cover"
+          className="h-96 w-full object-cover"
         />
         <section className="py-24 relative">
           <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">

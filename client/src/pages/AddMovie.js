@@ -40,13 +40,14 @@ function AddMovie() {
 
   return (
     <div className="text-center mt-10">
+      <br />
       <Zoom delay={200}>
-        <h2 className="text-5xl text-slate-600 mb-4">Add Movie</h2>
+        <h2 className="text-5xl text-accent font-serif my-6">Add Movie</h2>
       </Zoom>
       <Slide cascade delay={500}>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="name"
             placeholder="Movie name"
@@ -55,7 +56,7 @@ function AddMovie() {
             required
           />
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="image"
             placeholder="Movie image"
@@ -64,7 +65,7 @@ function AddMovie() {
             required
           />
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="year"
             placeholder="Movie Release Year"
@@ -73,7 +74,7 @@ function AddMovie() {
             required
           />
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="director"
             placeholder="Director"
@@ -82,7 +83,7 @@ function AddMovie() {
             required
           />
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="description"
             placeholder="Description"
@@ -91,7 +92,7 @@ function AddMovie() {
             required
           />
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="price"
             placeholder="Movie Price"
@@ -102,7 +103,7 @@ function AddMovie() {
           <Zoom delay={700}>
             <button
               type="submit"
-              className="btn btn-outline btn-info hover:animate-pulse"
+              className="btn btn-accent hover:animate-pulse"
             >
               Add Movie
             </button>

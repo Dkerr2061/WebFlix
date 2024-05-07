@@ -37,7 +37,7 @@ function LoginForm() {
                 </h1>
                 <form className="mt-4" onSubmit={handleSubmit}>
                   <div className="mb-3">
-                    <label className="mb-2 block text-xs font-semibold text-gray-700">
+                    <label className="mb-2 block text-xs font-semibold font-serif text-gray-700">
                       Username
                     </label>
                     <input
@@ -79,7 +79,7 @@ function LoginForm() {
               className="flex flex-wrap content-center justify-center rounded-r-md"
               style={{ width: "24rem", height: "32rem" }}
             >
-              <img src="./images/Web.png" alt="Webflix" />
+              <img src="./images/IMG_4508.JPG" alt="Webflix" />
             </div>
           </div>
         </Slide>

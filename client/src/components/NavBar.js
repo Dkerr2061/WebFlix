@@ -23,7 +23,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
   }
 
   return (
-    <div className="navbar bg-blue-600 fixed top-0 w-full z-50">
+    <div className="navbar bg-black fixed top-0 w-full z-50">
       <div className="navbar-start">
         {user ? (
           <div className="dropdown">
@@ -68,10 +68,12 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
         <div className="text-stone-100 font-serif mr-3 ml-3">
           {user ? (
             <div>
-              <a className="mr-3 italic font-bold">Hello, {user.username}!</a>
-              <a className="font-bold text-stone-300">
+              <span className="mr-3 italic font-bold">
+                Hello, {user.username}!
+              </span>
+              <span className="font-bold text-stone-300">
                 Your User ID: {user.id}
-              </a>
+              </span>
             </div>
           ) : null}
         </div>
@@ -79,11 +81,29 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
       <div className="navbar-center">
         {user ? (
           <Fade delay={500}>
-            <button className="btn glass text-5xl text-white font-serif italic hover:animate-pulse">
-              <NavLink to="/">🎥 WebFlix 🎥</NavLink>
+            <button className="text-5xl text-white font-serif italic hover:animate-pulse">
+              <NavLink to="/">
+                <span>
+                  <img
+                    src="./images/logo.png"
+                    alt="Webflix"
+                    className="h-12 w-auto rounded"
+                  />
+                </span>
+              </NavLink>
             </button>
           </Fade>
-        ) : null}
+        ) : (
+          <div>
+            <span>
+              <img
+                src="./images/logo.png"
+                alt="Webflix"
+                className="h-12 w-auto rounded"
+              />
+            </span>
+          </div>
+        )}
       </div>
       <div className="navbar-end">
         {searchBarAppear && (
@@ -103,7 +123,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle"
+                className="btn glass bg-gray-500 btn-circle border-gray-500"
               >
                 <div className="indicator">
                   <svg
@@ -148,7 +168,7 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
           ) : null}
         </div>
         {user ? (
-          <div className="btn btn-primary hover:animate-pulse font-serif">
+          <div className="btn bg-slate-500 border-none hover:animate-pulse font-serif text-black">
             <button onClick={logOutUser}>Logout</button>
           </div>
         ) : null}

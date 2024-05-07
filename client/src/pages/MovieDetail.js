@@ -92,14 +92,14 @@ function MovieDetail() {
       </div>
       {user.type === "admin" ? (
         <div className="text-center">
-          <h2 className="text-teal-300 text-5xl my-4">Update Movie</h2>
+          <h2 className="text-primary text-5xl my-4">Update Movie</h2>
           <form
             onSubmit={handleSubmit}
             className="flex flex-col items-center mb-4"
           >
             <h2>Movie Name:</h2>
             <input
-              className="input input-bordered input-info w-full max-w-xs mb-4"
+              className="input input-bordered input-accent w-full max-w-xs mb-4"
               type="text"
               name="name"
               placeholder="Movie name"
@@ -109,7 +109,7 @@ function MovieDetail() {
             />
             <h2>Movie Image:</h2>
             <input
-              className="input input-bordered input-info w-full max-w-xs mb-4"
+              className="input input-bordered input-accent w-full max-w-xs mb-4"
               type="text"
               name="image"
               placeholder="Movie image"
@@ -119,7 +119,7 @@ function MovieDetail() {
             />
             <h2>Release Year:</h2>
             <input
-              className="input input-bordered input-info w-full max-w-xs mb-4"
+              className="input input-bordered input-accent w-full max-w-xs mb-4"
               type="text"
               name="year"
               placeholder="Movie Release Year"
@@ -129,7 +129,7 @@ function MovieDetail() {
             />
             <h2>Director:</h2>
             <input
-              className="input input-bordered input-info w-full max-w-xs mb-4"
+              className="input input-bordered input-accent w-full max-w-xs mb-4"
               type="text"
               name="director"
               placeholder="Director"
@@ -139,7 +139,7 @@ function MovieDetail() {
             />
             <h2>Description:</h2>
             <input
-              className="input input-bordered input-info w-full max-w-xs mb-4"
+              className="input input-bordered input-accent w-full max-w-xs mb-4"
               type="text"
               name="description"
               placeholder="Description"
@@ -149,7 +149,7 @@ function MovieDetail() {
             />
             <h2>Price:</h2>
             <input
-              className="input input-bordered input-info w-full max-w-xs mb-4"
+              className="input input-bordered input-accent w-full max-w-xs mb-4"
               type="text"
               name="price"
               placeholder="Movie Price"
@@ -159,7 +159,7 @@ function MovieDetail() {
             />
             <button
               type="submit"
-              className="btn btn-outline btn-info hover:animate-pulse"
+              className="btn btn-accent hover:animate-pulse"
             >
               Update Movie
             </button>

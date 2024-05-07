@@ -43,13 +43,20 @@ function AddReview() {
 
   return (
     <div className="text-center mt-10">
+      <div>
+        <img
+          src="https://i0.wp.com/insidefilmroom.com/wp-content/uploads/2020/04/dune-1-1-e1586871398593.jpg?fit=2000%2C850&ssl=1"
+          alt="webflix"
+          className="h-96 w-full object-cover"
+        />
+      </div>
       <Zoom delay={200}>
-        <h2 className="text-teal-300 text-5xl mb-4">Add Review</h2>
+        <h2 className="text-accent font-serif text-5xl mb-4">Add Review</h2>
       </Zoom>
       <Slide cascade delay={500}>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="movie_id"
             placeholder="Movie ID"
@@ -58,7 +65,7 @@ function AddReview() {
             required
           />
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="user_id"
             placeholder="User ID"
@@ -67,7 +74,7 @@ function AddReview() {
             required
           />
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="rating"
             placeholder="Rating"
@@ -76,7 +83,7 @@ function AddReview() {
             required
           />
           <input
-            className="input input-bordered input-info w-full max-w-xs mb-4"
+            className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="text"
             placeholder="Review Text"
@@ -87,7 +94,7 @@ function AddReview() {
           <Zoom delay={700}>
             <button
               type="submit"
-              className="btn btn-outline btn-info hover:animate-pulse"
+              className="btn btn-outline btn-accent hover:animate-pulse"
             >
               Add Review
             </button>
