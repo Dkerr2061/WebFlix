@@ -22,7 +22,7 @@ function MovieList() {
         <img
           src="https://filmgrab.files.wordpress.com/2014/05/2424.jpg"
           alt="webflix"
-          className="h-80 w-full object-cover"
+          className="h-80 w-full object-cover shadow-lg"
         />
         <div>
           <h1 className="text-center font-serif font-bold underline text-5xl text-primary my-4">

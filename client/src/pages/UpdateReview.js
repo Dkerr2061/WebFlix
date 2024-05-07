@@ -60,7 +60,7 @@ function UpdateReview() {
         <img
           src="https://i.pinimg.com/originals/1d/40/96/1d40962412d6132ac5726978b097bdfe.jpg"
           alt="webflix"
-          className="h-96 w-full object-cover"
+          className="h-96 w-full object-cover shadow-lg"
         />
       </div>
       <Zoom delay={200}>

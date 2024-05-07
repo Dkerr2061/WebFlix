@@ -36,7 +36,7 @@ function CartList() {
         <img
           src="./images/cartimage.png"
           alt="webflix"
-          className="h-96 w-full object-cover object-top"
+          className="h-96 w-full object-cover object-top shadow-lg"
         />
       </div>
       <section className="py-24 relative">

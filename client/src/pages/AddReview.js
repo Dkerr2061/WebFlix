@@ -47,7 +47,7 @@ function AddReview() {
         <img
           src="https://i0.wp.com/insidefilmroom.com/wp-content/uploads/2020/04/dune-1-1-e1586871398593.jpg?fit=2000%2C850&ssl=1"
           alt="webflix"
-          className="h-96 w-full object-cover"
+          className="h-96 w-full object-cover shadow-lg"
         />
       </div>
       <Zoom delay={200}>

@@ -23,7 +23,7 @@ function ReviewList() {
         <img
           src="./images/iron2.png"
           alt="webflix"
-          className="h-96 w-full object-cover"
+          className="h-96 w-full object-cover shadow-lg"
         />
       </div>
       <div>
