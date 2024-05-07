@@ -19,23 +19,23 @@ function ReviewList() {
 
   return (
     <Fade cascade delay={200}>
-      <div>
+      <div className="flex flex-col mt-10">
         <img
           src="./images/iron2.png"
           alt="webflix"
           className="h-96 w-full object-cover shadow-lg"
         />
+        <section className="py-24 relative">
+          <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
+            <h2 className="title font-serif font-bold underline text-4xl leading-10 mb-8 text-center text-black">
+              Reviews:
+            </h2>
+            <div className=" p-4 lg:p-8 flex-nowrap mb-4 max-lg:max-w-lg max-lg:mx-auto gap-y-4 bg-transparent ">
+              {reviewComponent}
+            </div>
+          </div>
+        </section>
       </div>
-      <div>
-        <h1 className="text-primary font-serif font-bold underline text-center text-5xl my-4">
-          Reviews:
-        </h1>
-      </div>
-      <section className="my-4 justify-center flex">
-        <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none font-serif">
-          {reviewComponent}
-        </div>
-      </section>
     </Fade>
   );
 }
