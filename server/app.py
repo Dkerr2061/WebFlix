@@ -7,8 +7,8 @@ from flask import request, make_response, session
 from flask_restful import Resource
 
 # Local imports
-# from config import app, db, api, bcrypt
-from config import *
+from config import app, db, api, bcrypt
+# from config import *
 # Add your model imports
 from models import Movie, User, CartItem, Review
 
@@ -332,6 +332,6 @@ api.add_resource(Signup, '/signup')
 
 
 if __name__ == '__main__':
-    # app.run(port=5555, debug=True)
-    app.run()
+    app.run(port=5555, debug=True)
+    
 
