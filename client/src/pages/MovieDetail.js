@@ -31,7 +31,7 @@ function MovieDetail() {
           price: movieData.price,
         });
       });
-  }, []);
+  }, [id]);
 
   function handleSubmit(event) {
     event.preventDefault();

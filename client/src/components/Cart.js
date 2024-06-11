@@ -1,7 +1,7 @@
 import { Zoom } from "react-awesome-reveal";
 
 function Cart({ cartItem, deleteCartItems }) {
-  const { id, movie_cart, user_cart } = cartItem;
+  const { id, movie_cart } = cartItem;
 
   function handleDelete() {
     deleteCartItems(id);
