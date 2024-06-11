@@ -9,8 +9,10 @@ function AddReview() {
     rating: "",
     text: "",
   });
-  const { addReview } = useOutletContext();
+  const { addReview, user, filteredMovies } = useOutletContext();
   const navigate = useNavigate();
+  console.log(user);
+  console.log(filteredMovies);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -77,7 +79,7 @@ function AddReview() {
             className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="rating"
-            placeholder="Rating"
+            placeholder="Rating (Whole numbers only, no decimals)"
             onChange={handleOnChange}
             value={newReview.rating}
             required
