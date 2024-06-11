@@ -235,7 +235,7 @@ function App() {
         res.json().then((errorData) => console.log(errorData));
       }
     });
-  }, []);
+  }, [navigate, setUser]);
 
   function logInUser(loginData) {
     fetch("/login", {
