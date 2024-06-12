@@ -88,7 +88,7 @@ function AddReview() {
             required
           /> */}
           <select
-            className="select select-accent w-full max-w-xs"
+            className="select select-accent w-full max-w-xs mb-4"
             name="rating"
             onChange={handleOnChange}
             value={newReview.rating}
