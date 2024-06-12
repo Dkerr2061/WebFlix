@@ -69,7 +69,7 @@ function UpdateReview() {
       <Slide cascade delay={500}>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
           <h2>Rating:</h2>
-          <input
+          {/* <input
             className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="rating"
@@ -77,7 +77,28 @@ function UpdateReview() {
             onChange={handleOnChange}
             value={updatedReviewData.rating}
             required
-          />
+          /> */}
+          <select
+            className="select select-accent w-full max-w-xs mb-4"
+            name="rating"
+            onChange={handleOnChange}
+            value={updatedReviewData.rating}
+            required
+          >
+            <option disabled value="">
+              Choose Rating
+            </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
           <h2>Review Text:</h2>
           <input
             className="input input-bordered input-accent w-full max-w-xs mb-4"
