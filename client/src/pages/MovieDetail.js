@@ -54,8 +54,12 @@ function MovieDetail() {
   }
 
   function navigateToWriteReviews() {
-    navigate("/add_review");
+    navigate("/add_review", { state: { movie_id: movie.id } });
   }
+
+  // function navigateToWriteReviews() {
+  //   navigate("/add_reviews")
+  // }
 
   return (
     <Slide delay={300}>

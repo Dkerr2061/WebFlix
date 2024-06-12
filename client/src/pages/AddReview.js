@@ -1,29 +1,41 @@
-import React, { useState } from "react";
-import { useOutletContext, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useOutletContext, useNavigate, useLocation } from "react-router-dom";
 import { Zoom, Slide } from "react-awesome-reveal";
 
 function AddReview() {
+  const { addReview, user } = useOutletContext();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const movie_id = location.state?.movie_id || "";
+  console.log(user.id);
+
   const [newReview, setNewReview] = useState({
-    movie_id: "",
-    user_id: "",
+    movie_id: movie_id,
+    user_id: user?.id || "",
     rating: "",
     text: "",
   });
-  const { addReview, user, filteredMovies } = useOutletContext();
-  const navigate = useNavigate();
-  console.log(user);
-  console.log(filteredMovies);
+
+  useEffect(() => {
+    if (user && movie_id) {
+      setNewReview((prevReview) => ({
+        ...prevReview,
+        movie_id: movie_id,
+        user_id: user.id,
+      }));
+    }
+  }, [user, movie_id]);
 
   function handleSubmit(event) {
     event.preventDefault();
-    const movieID = parseInt(newReview.movie_id);
-    const userID = parseInt(newReview.user_id);
+    // const movieID = parseInt(newReview.movie_id);
+    // const userID = parseInt(newReview.user_id);
     const movieRating = parseInt(newReview.rating);
 
     addReview({
       ...newReview,
-      movie_id: movieID,
-      user_id: userID,
+      // movie_id: movieID,
+      // user_id: userID,
       rating: movieRating,
     });
 
@@ -57,7 +69,7 @@ function AddReview() {
       </Zoom>
       <Slide cascade delay={500}>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
-          <input
+          {/* <input
             className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="movie_id"
@@ -74,7 +86,7 @@ function AddReview() {
             onChange={handleOnChange}
             value={newReview.user_id}
             required
-          />
+          /> */}
           <input
             className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
