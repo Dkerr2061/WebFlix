@@ -7,7 +7,7 @@ function AddReview() {
   const navigate = useNavigate();
   const location = useLocation();
   const movie_id = location.state?.movie_id || "";
-  console.log(user.id);
+  // console.log(user.id);
 
   const [newReview, setNewReview] = useState({
     movie_id: movie_id,
@@ -87,7 +87,27 @@ function AddReview() {
             value={newReview.user_id}
             required
           /> */}
-          <input
+          <select
+            className="select select-accent w-full max-w-xs"
+            name="rating"
+            onChange={handleOnChange}
+            value={newReview.rating}
+          >
+            <option disabled selected>
+              Choose Rating
+            </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          {/* <input
             className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
             name="rating"
@@ -95,7 +115,7 @@ function AddReview() {
             onChange={handleOnChange}
             value={newReview.rating}
             required
-          />
+          /> */}
           <textarea
             className="textarea textarea-bordered textarea-accent textarea-lg w-full max-w-xs mb-4"
             type="text"
