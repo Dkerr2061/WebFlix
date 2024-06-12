@@ -88,7 +88,7 @@ function UpdateReview() {
             value={updatedReviewData.text}
             required
           />
-          <h2>Movie Id:</h2>
+          {/* <h2>Movie Id:</h2>
           <input
             className="input input-bordered input-accent w-full max-w-xs mb-4"
             type="text"
@@ -107,7 +107,7 @@ function UpdateReview() {
             onChange={handleOnChange}
             value={updatedReviewData.user_id}
             required
-          />
+          /> */}
           <Zoom delay={700}>
             <button
               type="submit"
