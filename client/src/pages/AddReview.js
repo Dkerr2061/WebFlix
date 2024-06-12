@@ -92,8 +92,9 @@ function AddReview() {
             name="rating"
             onChange={handleOnChange}
             value={newReview.rating}
+            required
           >
-            <option disabled selected>
+            <option disabled value="">
               Choose Rating
             </option>
             <option value="1">1</option>
